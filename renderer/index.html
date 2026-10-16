@@ -7,31 +7,21 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="app">
-  <header class="titlebar">
-    <div class="brand">FIREWING <span>LAUNCHER</span></div>
-    <div class="title" id="viewTitle"></div>
-    <div class="wc">
-      <button data-win="min" aria-label="Küçült">–</button>
-      <button data-win="max" aria-label="Büyüt">▢</button>
-      <button data-win="close" aria-label="Kapat">✕</button>
+<div class="win">
+  <header class="top">
+    <div class="brand"><i class="logo"></i>FIREWING</div>
+    <nav class="nav" id="nav"></nav>
+    <div class="who">
+      <span class="coin" id="coins"></span>
+      <button class="pill" id="panelBtn" data-nav="admin" hidden>Panel</button>
+      <div class="me"><span class="avatar" id="av">A</span><span id="uname"></span></div>
+      <div class="wcb"><button data-win="min" aria-label="Küçült">–</button><button data-win="max" aria-label="Büyüt">▢</button><button data-win="close" aria-label="Kapat">✕</button></div>
     </div>
   </header>
-  <aside class="side">
-    <div class="eyebrow">MENÜ</div>
-    <nav id="nav"></nav>
-    <div class="grow"></div>
-    <div class="card" id="server"></div>
-    <div class="card row"><div><div class="eyebrow">BAKİYE</div><b id="coins"></b></div><button class="btn">Gönder</button></div>
-    <div class="card row profile"><div class="avatar">A</div><div><b id="uname"></b><div class="muted" id="urole"></div></div></div>
-  </aside>
-  <main class="content" id="content"></main>
-  <footer class="bar">
-    <div class="barL">
-      <div class="row gap"><div class="select">FireWing Network ▾</div><button class="btn" id="btnKur">KUR</button></div>
-      <div class="tags" id="tags"></div>
-    </div>
-    <div class="barM"><div class="prog"><i id="progFill"></i></div><div class="muted" id="progText">Hazır</div></div>
+  <main class="main" id="content"></main>
+  <footer class="dock">
+    <div class="dprof"><i class="mini"></i><div>FireWing Network<small id="dockTags"></small></div></div>
+    <div class="dprog"><div class="prog"><i id="progFill" style="width:0"></i></div><small id="progText">Hazır</small></div>
     <button class="play" id="btnPlay">OYNA</button>
   </footer>
 </div>

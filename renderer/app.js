@@ -51,22 +51,17 @@ const save = (key) => call(api.data.set(key, S.D[key]));
 const isStaff = () => ['owner', 'admin'].includes(S.D.me.role);
 
 // ---------- menü ----------
-const ICON = '<svg viewBox="0 0 24 24"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-4 3-6 1 1 1 2 2 2 0-3 0-5 1-8z"/></svg>';
-const NAV = [
-  ['home', 'Ana Sayfa'], ['ads', 'Reklamlar'], ['support', 'Destek'], ['files', 'Dosyalar'],
-  ['mods', 'Modlar'], ['settings', 'Ayarlar'], ['admin', 'Kontrol Paneli']
-];
+const NAV = [['home', 'Ana Sayfa'], ['mods', 'Modlar'], ['store', 'Mağaza'], ['ads', 'Haberler'], ['support', 'Destek'], ['files', 'Dosyalar'], ['settings', 'Ayarlar']];
 function renderNav() {
-  $('#nav').innerHTML = NAV.filter(([k]) => k !== 'admin' || isStaff())
-    .map(([k, t]) => `<button data-nav="${k}" class="${S.view === k || (k === 'mods' && S.view === 'store') ? 'on' : ''}">${ICON}${t}</button>`).join('');
-  const t = NAV.find(([k]) => k === S.view);
-  $('#viewTitle').textContent = S.view === 'store' ? 'Mod Mağazası' : t ? t[1] : '';
+  $('#nav').innerHTML = NAV.map(([k, t]) => `<button data-nav="${k}" class="${S.view === k ? 'on' : ''}">${t}</button>`).join('');
+  const pb = $('#panelBtn');
+  pb.hidden = !isStaff();
+  pb.className = 'pill' + (S.view === 'admin' ? ' on' : '');
 }
 function renderChrome() {
   const me = S.D.me, p = S.set.profile;
-  $('#uname').textContent = me.name; $('#urole').textContent = me.role; $('#coins').textContent = fmt(me.coins) + ' Coin';
-  $('#server').innerHTML = `<div style="color:var(--gold)"><span class="dot"></span>Çevrimiçi</div><div class="muted">play.firewing.store</div>`;
-  $('#tags').innerHTML = `<span class="a">${esc(p.mcVersion)}</span><span>${esc(p.loader)}</span><span>Mod: Ana + Kullanıcı (${S.mods.user.filter((m) => m.enabled).length})</span>`;
+  $('#uname').textContent = me.name; $('#av').textContent = me.name[0].toUpperCase(); $('#coins').textContent = fmt(me.coins);
+  $('#dockTags').textContent = `${p.mcVersion} · ${p.loader} · ${S.mods.user.filter((m) => m.enabled).length} mod açık`;
 }
 
 // ---------- görünümler ----------
@@ -75,14 +70,18 @@ const V = {};
 V.home = () => {
   const news = S.D.announcements.slice(0, 3);
   const L = S.D.links;
-  const ext = (u, t) => (u ? `<a class="btn" href="${esc(u)}" target="_blank">${t}</a>` : '');
-  const cover = (nav, img, t, d) => `<button class="card3" data-nav="${nav}"><div class="cover" style="background-image:linear-gradient(0deg,rgba(10,6,7,.7),rgba(10,6,7,.1)),url(assets/${img})"></div><div class="body"><b>${t}</b><div class="muted">${d}</div></div></button>`;
-  return `<div class="hero"><h1>FIREWING NETWORK</h1><div class="sub2">Keşfet. Fethet. Yüksel.</div>
-    <div class="row gap wrap" style="margin-top:12px"><button class="btn pri" data-nav="store">Mod Mağazası</button><button class="btn" data-nav="mods">Modlarım</button>${ext(L.discord, 'Discord')}${ext(L.web, 'Web Sitesi')}</div></div>
-  <div class="eyebrow" style="margin-bottom:8px">ÖNE ÇIKANLAR</div>
-  <div class="cards">${cover('store', 'icon-chest.jpg', 'Mod Mağazası', 'Modrinth ve CurseForge')}${cover('mods', 'bg.jpg', 'Modlarım', 'Ana paket + kullanıcı modları')}${cover('ads', 'banner.jpg', 'Duyurular', 'Haber ve etkinlikler')}</div>
-  <div class="eyebrow" style="margin-bottom:8px">HABERLER</div>
-  <div class="grid3">${news.map((a) => `<div class="item"><div class="grow"><b>${esc(a.title)}</b><div class="muted">${esc(a.badge)}</div></div></div>`).join('') || '<div class="muted">Henüz haber yok.</div>'}</div>`;
+  const ext = (u, t) => (u ? `<a class="btn grow" href="${esc(u)}" target="_blank">${t}</a>` : `<span class="btn grow" style="opacity:.5">${t}</span>`);
+  const cover = (nav, img, t, d) => `<button class="card3" data-nav="${nav}"><div class="cover" style="background-image:linear-gradient(0deg,rgba(12,8,9,.6),rgba(12,8,9,.1)),url(assets/${img})"></div><div class="body"><b>${t}</b><div class="muted">${d}</div></div></button>`;
+  const grads = ['#e83a4d,#3a0a10', '#ff8a5c,#5a1a10', '#b0204f,#1a0508'];
+  return `<div class="cols"><div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+    <div class="hero" style="height:268px"><span class="chip" style="align-self:flex-start">AKTİF SEZON</span><h1>FIREWING NETWORK</h1><div class="sub2">Keşfet. Fethet. Yüksel.</div>
+      <div class="row gap" style="margin-top:6px"><button class="btn pri" data-nav="store">Mod Mağazası</button><button class="btn" data-nav="mods">Modlarım</button></div></div>
+    <div class="grid3"><div class="stat"><span class="eyebrow">Açık mod</span><b>${S.mods.user.filter((m) => m.enabled).length}</b></div><div class="stat"><span class="eyebrow">Sürüm</span><b>${esc(S.set.profile.mcVersion)}</b></div><div class="stat"><span class="eyebrow">Loader</span><b style="font-size:16px">${esc(S.set.profile.loader)}</b></div></div>
+    <div class="cards">${cover('store', 'icon-chest.jpg', 'Mod Mağazası', 'Modrinth ve CurseForge')}${cover('mods', 'bg.jpg', 'Modlarım', 'Ana paket + kullanıcı modları')}${cover('ads', 'banner.jpg', 'Haberler', 'Duyuru ve etkinlikler')}</div></div>
+  <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+    <div class="panel hot"><span class="eyebrow">Sunucu</span><div><b>play.firewing.store</b><div class="muted">Sunucu durumu API bağlanınca gösterilecek</div></div></div>
+    <div class="panel"><span class="eyebrow">Haberler</span>${news.map((a, i) => `<div class="item"><div class="thumb" style="background:linear-gradient(135deg,${grads[i % 3]})"></div><div class="grow"><b>${esc(a.title)}</b><div class="muted">${esc(a.badge)}</div></div></div>`).join('') || '<div class="muted">Henüz haber yok.</div>'}
+      <div class="row gap">${ext(L.discord, 'Discord')}${ext(L.web, 'Web Sitesi')}</div></div></div></div>`;
 };
 
 V.ads = () => `<h1>Reklamlar & Duyurular</h1><p class="sub">Sunucudan haberler, etkinlikler ve kampanyalar.</p><div class="banner"><h2>FIREWING NETWORK</h2><div class="muted">Keşfet. Fethet. Yüksel.</div></div>
@@ -110,16 +109,14 @@ V.files = () => `<h1>Dosyalar</h1><p class="sub">Launcher klasörleri.</p>
 
 V.mods = () => {
   const { main, user } = S.mods;
-  return `<div class="row between center wrap gap"><div><h1>Mod Yöneticisi</h1><p class="sub">Profil: ${esc(S.set.profile.name)} · ${esc(S.set.profile.mcVersion)} · ${esc(S.set.profile.loader)}</p></div>
-    <div class="row gap"><button class="btn pri" data-nav="store">+ Modrinth / CurseForge'dan Ekle</button><button class="btn" data-act="addLocal">.jar Dosyası Ekle</button></div></div>
-  <div class="grid2">
-    <div class="panel"><div class="row between"><h2>Ana Mod Paketi</h2><span class="chip">SALT OKUNUR</span></div><div class="mono">mods/</div>
-      <div class="muted">Sunucunun zorunlu modları. Oyuncu silemez veya kapatamaz.</div>
-      ${main.map((m) => `<div class="item">🔒 <b>${esc(m.fileName)}</b></div>`).join('') || '<div class="muted">Ana paket boş. Mod dosyaları mods/ klasörüne konur.</div>'}</div>
-    <div class="panel hot"><div class="row between"><h2>Kullanıcı Modları</h2><span class="chip">${user.filter((m) => m.enabled).length} AÇIK</span></div><div class="mono">usermods/</div>
-      ${user.map((m) => `<div class="item" style="opacity:${m.enabled ? 1 : .5}"><img class="ico" src="${m.iconUrl ? esc(m.iconUrl) : 'assets/icon-chest.jpg'}" alt=""><div class="grow"><b>${esc(m.name)}</b><div class="muted">${esc(m.source)} · ${esc(m.version)}</div></div>
-        <button class="switch ${m.enabled ? 'on' : ''}" data-act="toggle" data-f="${esc(m.fileName)}" aria-label="Aç/Kapat"><i></i></button>
-        <button class="btn danger" data-act="remove" data-f="${esc(m.fileName)}" aria-label="Sil">✕</button></div>`).join('') || '<div class="muted">Henüz kullanıcı modu yok.</div>'}</div>
+  return `<div class="row between center wrap gap"><div><h1>Modlarım</h1><p class="sub" style="margin-bottom:14px">${esc(S.set.profile.name)} · ${esc(S.set.profile.mcVersion)} · ${esc(S.set.profile.loader)}</p></div>
+    <div class="row gap"><button class="btn pri" data-nav="store">+ Mağazadan Ekle</button><button class="btn" data-act="addLocal">.jar Ekle</button></div></div>
+  <div class="cols">
+    <div class="panel hot"><div class="row between center"><h2>Kullanıcı Modları</h2><span class="chip">${user.filter((m) => m.enabled).length} AÇIK</span></div><div class="muted">Sadece senin modların. Ana paketi etkilemez, istediğin an açıp kapatabilirsin.</div>
+      <div class="grid2" style="gap:12px">${user.map((m) => `<div class="item" style="opacity:${m.enabled ? 1 : .5}"><img class="ico" src="${m.iconUrl ? esc(m.iconUrl) : 'assets/icon-chest.jpg'}" alt=""><div class="grow"><b>${esc(m.name)}</b><div class="muted">${esc(m.source)} · ${esc(m.version)}</div></div>
+        <button class="switch ${m.enabled ? 'on' : ''}" data-act="toggle" data-f="${esc(m.fileName)}" aria-label="Aç/Kapat"><i></i></button><button class="btn danger" style="padding:0 12px" data-act="remove" data-f="${esc(m.fileName)}" aria-label="Sil">✕</button></div>`).join('') || '<div class="muted">Henüz kullanıcı modu yok. Mağazadan ekleyebilirsin.</div>'}</div></div>
+    <div class="panel"><div class="row between center"><h2>Ana Paket</h2><span class="chip">KİLİTLİ</span></div><div class="muted">Sunucunun zorunlu modları. Launcher günceller.</div>
+      ${main.map((m) => `<div class="item"><div class="grow"><b>${esc(m.fileName)}</b></div><span class="muted">zorunlu</span></div>`).join('') || '<div class="muted">Ana paket boş.</div>'}</div>
   </div>`;
 };
 
@@ -275,7 +272,6 @@ $('#btnPlay').addEventListener('click', () => guard(async () => {
   try { await call(api.launch.start()); if (S.set.minimizeOnLaunch) api.win.minimize(); }
   finally { $('#btnPlay').disabled = false; }
 }));
-$('#btnKur').addEventListener('click', () => toast('Profil kurulumu oyun başlatıcı bağlandığında çalışacak.'));
 
 // ---------- açılış ----------
 (async function init() {

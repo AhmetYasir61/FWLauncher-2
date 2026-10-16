@@ -1,129 +1,100 @@
+/* FireWing Launcher: Obsidyen & Mercan. Koyu zemin, tek sıcak vurgu, cam yüzeyler. */
 @font-face{font-family:"Minecraftia";src:url(assets/fonts/Minecraftia-Regular.ttf)}
 @font-face{font-family:"Minercraftory";src:url(assets/fonts/Minercraftory.ttf)}
 @font-face{font-family:"Minecrafter";src:url(assets/fonts/minecrafter/Minecrafter.Reg.ttf)}
-:root{--bg:#0a0607;--panel:#120a0c;--panel2:#190d10;--line:#3a1218;--ember:#ff3b4a;--red:#9b1021;--gold:#ff7a85;--text:#f5e8e8;--muted:#b08c90;--ok:#4ade80}
+:root{--ground:#0c0809;--text:#f1e9e8;--muted:#a3949a;--line:rgba(255,255,255,.08);--crimson:#e83a4d;--coral:#ff8a5c;--ok:#5ee3a1;--glass:rgba(255,255,255,.04);--sans:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;--pix:"Minecraftia",var(--sans);--disp:"Minecrafter","Minercraftory","Minecraftia",sans-serif}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:15px/1.5 "Minecraftia",system-ui,sans-serif}
-button,input,select,textarea{font:inherit;color:inherit}
-.app{height:100vh;display:grid;grid-template-columns:236px 1fr;grid-template-rows:44px 1fr 96px;grid-template-areas:"t t" "s c" "s b"}
-.titlebar{grid-area:t;display:flex;align-items:center;gap:24px;padding:0 0 0 18px;background:linear-gradient(90deg,#2a050b 0%,#070405 55%);border-bottom:1px solid #5a111b;-webkit-app-region:drag}
-.brand{font-family:"Minecrafter","Minercraftory","Minecraftia",sans-serif;font-size:18px;letter-spacing:2px;color:#ffd9dc}.brand span{color:var(--ember)}
-.title{color:var(--muted);flex:1}
-.wc{display:flex;-webkit-app-region:no-drag}.wc button{width:46px;height:44px;border:0;background:transparent;cursor:pointer}.wc button:hover{background:#2a0f14}
-.side{grid-area:s;background:linear-gradient(180deg,#1a0a0e 0%,#0d0507 100%);border-right:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:8px;overflow:auto}
-.eyebrow{font-size:11px;letter-spacing:2px;color:#8a6a6e}
-.grow{flex:1}
-nav{display:flex;flex-direction:column;gap:4px}
-nav button{display:flex;align-items:center;gap:12px;height:42px;padding:0 12px;border-radius:6px;border:1px solid transparent;background:transparent;font-weight:600;cursor:pointer;text-align:left}
-nav button:hover{background:#1c0b0f}
-nav button.on{background:rgba(155,16,33,.18);border-color:#ff2d3d}
-nav svg{width:18px;height:18px;stroke:var(--ember);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.card{padding:12px;border-radius:8px;background:var(--panel2);border:1px solid var(--line)}
-.card.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.profile{border-color:#d0202e;justify-content:flex-start}
-.avatar{width:36px;height:36px;border-radius:6px;background:linear-gradient(135deg,#ff7a85,#9b1021);display:grid;place-items:center;font-weight:800;color:#1a0508}
-.muted{color:var(--muted);font-size:12px}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px}
-.content{grid-area:c;background:radial-gradient(ellipse at 85% 0%,rgba(155,16,33,.22),transparent 60%);padding:20px 24px;overflow:auto;min-width:0}
-h1{font-family:"Minercraftory","Minecraftia",sans-serif;font-size:26px;margin:0 0 4px;color:#ffd9dc}
-h2{font-size:16px;margin:0}
-.sub{color:var(--muted);margin:0 0 16px}
-.btn{height:36px;padding:0 14px;border-radius:6px;border:1px solid #7a1c26;background:#2a0f14;cursor:pointer;font-weight:600}
-.btn:hover{background:#3a1319}
-.btn.pri{background:linear-gradient(180deg,var(--ember),var(--red));border-color:var(--red);color:#1a0508}
-.btn.ok{border-color:#166534;color:#86efac;background:transparent}
-.btn.danger{border-color:#8f1b25;color:#ff9aa2}
-.btn:disabled{opacity:.5;cursor:default}
-.row{display:flex}.gap{gap:8px}.wrap{flex-wrap:wrap}.between{justify-content:space-between}.center{align-items:center}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.panel{border-radius:8px;border:1px solid var(--line);background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.panel.hot{border-color:var(--red);box-shadow:0 0 18px rgba(255,40,60,.18)}
-.item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:6px;background:var(--panel2);border:1px solid #2a1015}
-.item .grow{min-width:0}.item img,.thumb{width:48px;height:48px;border-radius:8px;object-fit:cover;background:linear-gradient(135deg,#5b3a2a,#2a0f14);flex:none}
-.item b{display:block}
-.chip{font-size:11px;padding:3px 8px;border-radius:4px;background:#3a0f14;color:var(--gold)}
-input[type=text],input[type=number],input[type=search],select,textarea{width:100%;height:38px;padding:0 12px;border-radius:6px;background:var(--panel2);border:1px solid var(--line);outline:0}
-textarea{height:80px;padding:8px 12px;resize:vertical}
-input:focus,select:focus,textarea:focus{border-color:var(--ember)}
-label.f{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
-.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.tabs button{height:38px;padding:0 18px;border-radius:6px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;font-weight:600}
-.tabs button.on{background:linear-gradient(180deg,var(--ember),var(--red));color:#1a0508;border-color:var(--red)}
-.switch{width:44px;height:26px;border-radius:13px;border:0;padding:2px;background:#4a3036;cursor:pointer;display:flex;justify-content:flex-start;flex:none}
-.switch.on{background:#d0202e;justify-content:flex-end}.switch i{width:22px;height:22px;border-radius:50%;background:#fff}
-.hero{border-radius:8px;border:1px solid var(--red);box-shadow:0 0 24px rgba(255,40,60,.3);background:radial-gradient(ellipse at 70% 20%,#ff3b4a 0%,#8a0f1c 35%,#1a0508 78%);padding:28px;min-height:230px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;margin-bottom:16px}
-.hero h1{font-size:34px}
-.bar{grid-area:b;background:linear-gradient(0deg,#1c070b,#120a0c)!important;display:flex;align-items:center;gap:16px;padding:0 20px;background:var(--panel);border-top:1px solid var(--line)}
-.barL{display:flex;flex-direction:column;gap:6px}
-.select{width:200px;height:34px;display:flex;align-items:center;padding:0 12px;border-radius:6px;background:#1f0d11;border:1px solid #4a1820}
-.tags{display:flex;gap:6px;font-size:12px}.tags span{padding:3px 10px;border-radius:4px;background:#2a0f14}.tags .a{color:var(--gold)}
-.barM{flex:1;display:flex;flex-direction:column;gap:6px;align-items:center}
-.prog{width:100%;height:8px;border-radius:4px;background:#2a0f14;overflow:hidden}.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));transition:width .3s}
-.play{width:210px;height:56px;border:0;border-radius:8px;font:22px "Minecrafter","Minercraftory","Minecraftia",sans-serif;letter-spacing:2px;background:linear-gradient(180deg,var(--ember),var(--red));color:#1a0508;cursor:pointer;box-shadow:0 0 18px rgba(255,40,60,.5)}
-.play:disabled{opacity:.6}
-.toast{position:fixed;right:20px;bottom:110px;max-width:360px;padding:12px 16px;border-radius:8px;background:#2a0f14;border:1px solid var(--ember)}
-.toast.err{border-color:#ff2d3d;color:#ff9aa2}
-.range{width:100%;accent-color:var(--ember)}
+body{margin:0}
+.win{width:100vw;height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:0;color:var(--text);font:14px/1.5 var(--sans);background:radial-gradient(820px 430px at 88% -12%,rgba(232,58,77,.24),transparent 65%),radial-gradient(620px 420px at 2% 112%,rgba(176,32,79,.22),transparent 65%),linear-gradient(rgba(12,8,9,.93),rgba(12,8,9,.97)),url(assets/bg.jpg) center/cover,var(--ground)}
+.win a{color:inherit;text-decoration:none}
+.win button{font:inherit;color:inherit}
+/* ---- üst çubuk ---- */
+.top{height:60px;flex:none;display:flex;align-items:center;gap:16px;padding:0 20px;border-bottom:1px solid var(--line);background:rgba(10,6,7,.55)}
+.brand{width:176px;display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;letter-spacing:2px;color:#fff}
+.logo{width:30px;height:30px;background:url(assets/logo.png) center/contain no-repeat;filter:drop-shadow(0 0 8px rgba(232,58,77,.65))}
+.nav{flex:1;display:flex;justify-content:center;gap:2px}
+.nav a,.nav button{height:36px;padding:0 13px;display:flex;align-items:center;border:0;border-radius:999px;background:transparent;color:var(--muted);font:600 13px var(--sans);cursor:pointer}
+.nav a:hover,.nav button:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav .on{color:#fff;background:linear-gradient(135deg,rgba(232,58,77,.34),rgba(255,138,92,.16));box-shadow:inset 0 0 0 1px rgba(255,125,110,.42)}
+.who{width:340px;display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.coin{padding:6px 12px;border-radius:999px;font:14px var(--disp);color:#ffb59c;background:rgba(255,138,92,.1);box-shadow:inset 0 0 0 1px rgba(255,138,92,.28)}
+.pill{height:32px;padding:0 12px;display:flex;align-items:center;border:0;border-radius:999px;font:600 12px var(--sans);color:var(--muted);background:var(--glass);box-shadow:inset 0 0 0 1px var(--line);cursor:pointer}
+.pill.on{color:#fff;background:rgba(232,58,77,.28);box-shadow:inset 0 0 0 1px rgba(255,125,110,.5)}
+.me{display:flex;align-items:center;gap:8px;font-weight:600}
+.avatar{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--sans);color:#1a0508;background:linear-gradient(135deg,var(--coral),var(--crimson))}
+.wc{color:var(--muted);letter-spacing:9px;margin-left:4px}
+/* ---- içerik ---- */
+.main{flex:1;min-height:0;overflow:hidden;padding:22px 32px 112px}
+h1{margin:0 0 4px;font:400 26px/1.25 var(--pix);color:#fff;text-shadow:0 0 24px rgba(232,58,77,.5)}
+h2{margin:0;font:400 15px/1.3 var(--pix);color:#fff}
+.sub{margin:0 0 16px;color:var(--muted)}
+.eyebrow{font:12px var(--pix);letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.muted{color:var(--muted);font-size:12.5px}
+b{font-weight:600;color:#fff}
 .mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--muted)}
-@media(max-width:1100px){.grid2,.grid3{grid-template-columns:1fr}}
-
-/* --- görseller --- */
-.brand{display:flex;align-items:center;gap:10px}
-.brand::before{content:"";width:32px;height:32px;background:url(assets/logo.png) center/contain no-repeat;filter:drop-shadow(0 0 6px rgba(255,40,60,.6))}
-.content{background:linear-gradient(rgba(10,6,7,.86),rgba(10,6,7,.93)),url(assets/bg.jpg) center/cover}
-.hero{min-height:260px;background:linear-gradient(90deg,rgba(10,6,7,.92) 0%,rgba(10,6,7,.45) 50%,rgba(10,6,7,.05) 100%),url(assets/hero.jpg) 75% 30%/cover}
-.banner{height:150px;border-radius:8px;border:1px solid var(--red);margin-bottom:16px;background:linear-gradient(90deg,rgba(10,6,7,.85),rgba(10,6,7,.1)),url(assets/banner.jpg) center/cover;display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
-.item img.ico,.thumb.ico{width:48px;height:48px;border-radius:8px;object-fit:cover;flex:none}
-
-/* pixel yazı: kalın taklidi ve ince ayar */
-b,h2{font-weight:400;font-family:"Minercraftory","Minecraftia",sans-serif}
-.btn,nav button,.tabs button{font-weight:400}
-.dot{vertical-align:middle}
-.muted,.eyebrow,.chip,.tags{font-family:"Minecraftia",sans-serif}
-.muted{font-size:12px}
-
-/* === Modern oyun launcher dili: cam paneller, yuvarlak köşe, kapak kartları === */
-body,.win,.app{font-family:"Minecraftia",sans-serif;font-size:15px}
-.app,.win{background:radial-gradient(900px 520px at 88% -8%,rgba(255,40,60,.24),transparent 60%),radial-gradient(700px 520px at 0% 100%,rgba(155,16,33,.28),transparent 60%),#0a0607}
-button,input,select,textarea,.win button{font-family:"Minecraftia",sans-serif}
-h1{font-family:"Minecraftia",sans-serif;font-size:24px;font-weight:400;color:#fff;text-shadow:0 0 22px rgba(255,40,60,.55)}
-h2{font-family:"Minecraftia",sans-serif;font-size:16px;font-weight:400}
-b{font-family:"Minecraftia",sans-serif;font-weight:400;color:#fff}
-.hero h1{font-family:"Minecrafter","Minecraftia",sans-serif;font-size:36px;letter-spacing:2px;text-shadow:0 0 28px rgba(255,40,60,.7),3px 3px 0 #000}
-.card.row:not(.profile) b{font-family:"Minercraftory","Minecraftia",sans-serif;color:#ff7a85}
-.titlebar{background:rgba(0,0,0,.4);border-bottom:1px solid rgba(255,70,90,.14)}
-.side{background:rgba(18,8,11,.72);backdrop-filter:blur(14px);border-right:1px solid rgba(255,70,90,.14)}
-.bar{background:rgba(18,8,11,.82);backdrop-filter:blur(14px);border-top:1px solid rgba(255,70,90,.14)}
-nav a,nav button{border-radius:12px;border:1px solid transparent}
-nav a.on,nav button.on{background:linear-gradient(90deg,rgba(255,45,61,.38),rgba(155,16,33,.12));border-color:rgba(255,80,100,.55);box-shadow:0 0 18px rgba(255,40,60,.25)}
-.panel,.card,.item{background:rgba(26,11,15,.74);border:1px solid rgba(255,70,90,.16);box-shadow:0 8px 28px rgba(0,0,0,.35)}
-.panel,.card{border-radius:16px}
-.item{border-radius:14px}
-.panel.hot{border-color:rgba(255,80,100,.5);box-shadow:0 0 26px rgba(255,40,60,.22),0 8px 28px rgba(0,0,0,.35)}
-.card.profile{border-color:rgba(255,80,100,.5)}
-.btn,.tabs a,.tabs button{border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:#fff;text-shadow:none;box-shadow:none}
-.btn:hover,.tabs button:hover{background:rgba(255,255,255,.14)}
-.btn.pri,.tabs a.on,.tabs button.on{background:linear-gradient(180deg,#ff3b4a,#b3162a);border-color:rgba(255,130,140,.6);box-shadow:0 6px 20px rgba(255,40,60,.35)}
-.tabs a,.tabs button{border-radius:999px}
-.btn.danger{background:rgba(255,45,61,.16);border-color:rgba(255,80,100,.4);color:#ffb3ba}
-.btn.ok{background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.5);color:#86efac}
-.field,.select,input[type=text],input[type=number],input[type=search],select,textarea{border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.38);box-shadow:none}
-.chip{border-radius:999px;border:0;background:rgba(255,45,61,.2);color:#ff9ea6;box-shadow:none}
-.tags span{border-radius:8px;border:0;background:rgba(255,255,255,.07)}
-.prog{height:8px;border:0;border-radius:999px;background:rgba(255,255,255,.1)}
-.prog i{border-radius:999px;background:linear-gradient(90deg,#9b1021,#ff3b4a)}
-.play{border:1px solid rgba(255,140,150,.6);border-radius:14px;background:linear-gradient(180deg,#ff3b4a,#a8122a);color:#fff;font-size:24px;text-shadow:2px 2px 0 rgba(0,0,0,.6);box-shadow:0 8px 28px rgba(255,40,60,.45)}
-.avatar,.thumb,img.ico{border-radius:12px}
-.switch{border:0;border-radius:999px}.switch i{border-radius:50%}
-.hero{border:1px solid rgba(255,90,110,.5);border-radius:22px;box-shadow:0 0 36px rgba(255,40,60,.3);height:220px;min-height:220px;padding:24px 28px;margin-bottom:16px}
-.banner{border:1px solid rgba(255,90,110,.5);border-radius:18px;box-shadow:none}
-.sub2{color:#ff9ea6}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:16px}
-.card3{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:rgba(26,11,15,.74);border:1px solid rgba(255,70,90,.18);box-shadow:0 8px 28px rgba(0,0,0,.35);padding:0;text-align:left;color:inherit;cursor:pointer;text-decoration:none}
-.card3:hover{border-color:rgba(255,90,110,.65)}
-.card3 .cover{height:96px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center}
-.card3 .cover img{width:64px;height:64px;border-radius:14px;object-fit:cover;box-shadow:0 6px 20px rgba(0,0,0,.6)}
+.row{display:flex}.gap{gap:10px}.wrap{flex-wrap:wrap}.between{justify-content:space-between}.center{align-items:center}.grow{flex:1;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:18px}
+.panel{display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:18px;background:var(--glass);border:1px solid var(--line);min-width:0}
+.panel.hot{border-color:rgba(232,58,77,.42);background:linear-gradient(180deg,rgba(232,58,77,.08),var(--glass))}
+.item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.thumb,img.ico{width:48px;height:48px;border-radius:12px;flex:none;object-fit:cover;background-size:cover;background-position:center}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font:11px var(--pix);color:#ffb3a6;background:rgba(232,58,77,.2)}
+.btn{height:38px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;font:600 13px var(--sans);cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.12)}
+.btn.pri{border:0;background:linear-gradient(135deg,var(--crimson),var(--coral));box-shadow:0 8px 24px rgba(232,58,77,.35)}
+.btn.danger{background:rgba(232,58,77,.14);border-color:rgba(232,58,77,.35);color:#ffb3ba}
+.btn.ok{background:rgba(94,227,161,.1);border-color:rgba(94,227,161,.4);color:var(--ok)}
+.btn:disabled{opacity:.55;cursor:default}
+.field{height:40px;display:flex;align-items:center;padding:0 14px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid var(--line);color:var(--muted)}
+.area{height:78px;align-items:flex-start;padding-top:10px}
+label.f{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted)}
+.tabs{display:inline-flex;gap:4px;padding:4px;margin-bottom:16px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.tabs a,.tabs button{height:34px;padding:0 16px;display:flex;align-items:center;border:0;border-radius:10px;background:transparent;color:var(--muted);font:600 13px var(--sans);cursor:pointer}
+.tabs .on{color:#fff;background:linear-gradient(135deg,rgba(232,58,77,.5),rgba(255,138,92,.3))}
+.switch{width:44px;height:26px;padding:3px;border:0;border-radius:999px;background:rgba(255,255,255,.14);display:flex;justify-content:flex-start;flex:none;cursor:pointer}
+.switch.on{background:linear-gradient(135deg,var(--crimson),var(--coral));justify-content:flex-end}
+.switch i{width:20px;height:20px;border-radius:50%;background:#fff}
+.prog{height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+.prog i{display:block;height:100%;width:72%;border-radius:999px;background:linear-gradient(90deg,var(--crimson),var(--coral))}
+/* ---- hero ve kartlar ---- */
+.hero{position:relative;height:300px;padding:30px 34px;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;border:1px solid rgba(255,125,110,.35);box-shadow:0 0 50px rgba(232,58,77,.2);background:linear-gradient(90deg,rgba(12,8,9,.96) 0%,rgba(12,8,9,.6) 45%,rgba(12,8,9,0) 85%),url(assets/hero.jpg) 85% 22%/cover}
+.hero h1{font:400 40px/1.1 var(--disp);letter-spacing:2px;text-shadow:0 0 30px rgba(232,58,77,.7),3px 3px 0 #000}
+.hero .sub2{color:#ffc2b8;font-size:15px;max-width:380px}
+.banner{height:150px;padding:20px;border-radius:20px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(255,125,110,.3);background:linear-gradient(90deg,rgba(12,8,9,.88),rgba(12,8,9,.1)),url(assets/banner.jpg) center/cover;margin-bottom:14px}
+.stat{padding:14px 16px;border-radius:16px;background:var(--glass);border:1px solid var(--line)}
+.stat b{display:block;margin-top:2px;font:400 20px var(--disp);color:#ffb59c}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card3{display:flex;flex-direction:column;overflow:hidden;border-radius:18px;background:var(--glass);border:1px solid var(--line);color:inherit;text-align:left;padding:0;cursor:pointer}
+.card3:hover{border-color:rgba(255,125,110,.5)}
+.card3 .cover{height:88px;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center}
+.card3 .cover img{width:56px;height:56px;border-radius:14px;object-fit:cover;box-shadow:0 8px 22px rgba(0,0,0,.6)}
 .card3 .body{padding:12px 14px;display:flex;flex-direction:column;gap:4px}
-.card3 .body .row{align-items:center}
-.dot{vertical-align:middle}
+.msg{max-width:80%;padding:10px 14px;border-radius:16px 16px 16px 4px;background:rgba(255,255,255,.07)}
+.msg.mine{align-self:flex-end;border-radius:16px 16px 4px 16px;background:rgba(232,58,77,.22)}
+/* ---- alt kontrol çubuğu ---- */
+.dock{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);width:840px;height:76px;display:flex;align-items:center;gap:18px;padding:0 14px;border-radius:22px;background:rgba(22,14,17,.86);border:1px solid rgba(255,255,255,.1);box-shadow:0 18px 50px rgba(0,0,0,.6),0 0 0 1px rgba(232,58,77,.14)}
+.dprof{width:270px;display:flex;align-items:center;gap:12px;font-weight:600}
+.dprof small,.dprog small{display:block;color:var(--muted);font-size:12px;font-weight:400}
+.mini{width:48px;height:48px;border-radius:12px;flex:none;background:url(assets/hero.jpg) 60% 30%/cover}
+.dprog{flex:1;display:flex;flex-direction:column;gap:6px}
+.play{height:50px;padding:0 34px;display:flex;align-items:center;border:0;border-radius:15px;font:22px var(--disp);letter-spacing:3px;color:#fff;cursor:pointer;background:linear-gradient(135deg,var(--crimson),var(--coral));box-shadow:0 8px 28px rgba(232,58,77,.5);text-shadow:2px 2px 0 rgba(0,0,0,.5)}
+
+/* ---- uygulama (Electron) ek kuralları ---- */
+html,body{height:100%;background:#0c0809;overflow:hidden}
+.top{-webkit-app-region:drag}
+.top a,.top button,.top .me{-webkit-app-region:no-drag}
+.wcb{display:flex;margin-left:2px}.wcb button{width:38px;height:32px;border:0;background:transparent;color:var(--muted);cursor:pointer;border-radius:8px}.wcb button:hover{background:rgba(255,255,255,.1);color:#fff}
+.main{overflow:auto}
+.main::-webkit-scrollbar{width:10px}.main::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:10px}
+.pill[hidden]{display:none}
+input[type=text],input[type=number],input[type=search],select,textarea{width:100%;height:40px;padding:0 14px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid var(--line);color:var(--text);outline:0;font:14px var(--sans)}
+textarea{height:80px;padding:10px 14px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:rgba(255,125,110,.6)}
+.range{width:100%;accent-color:var(--crimson)}
+.toast{position:fixed;right:24px;bottom:110px;max-width:360px;padding:12px 16px;border-radius:14px;background:rgba(30,16,20,.95);border:1px solid rgba(255,125,110,.5);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.toast.err{border-color:#e83a4d;color:#ffb3ba}
+.toast[hidden]{display:none}
+.dock{width:min(840px,calc(100vw - 48px))}
+.card3{font:inherit}
