@@ -35,6 +35,8 @@ const SEED = {
   ],
   tickets: []
 };
+const ICONS = ['sword', 'shield', 'gem', 'chest'];
+const icon = (i) => `assets/icon-${ICONS[i % 4]}.jpg`;
 const ROLES = ['owner', 'admin', 'moderator', 'rehber', 'oyuncu'];
 
 const S = { view: 'home', tab: 'products', source: 'modrinth', results: [], query: '', busy: {}, mods: { main: [], user: [] }, set: null, D: {}, edit: null, ticket: null };
@@ -85,7 +87,7 @@ V.home = () => {
   </div>`;
 };
 
-V.ads = () => `<h1>Reklamlar & Duyurular</h1><p class="sub">Sunucudan haberler, etkinlikler ve kampanyalar.</p>
+V.ads = () => `<h1>Reklamlar & Duyurular</h1><p class="sub">Sunucudan haberler, etkinlikler ve kampanyalar.</p><div class="banner"><h2>FIREWING NETWORK</h2><div class="muted">Keşfet. Fethet. Yüksel.</div></div>
   <div class="panel">${S.D.announcements.map((a) => `<div class="item"><div class="grow"><span class="chip">${esc(a.badge)}</span><b>${esc(a.title)}</b><div class="muted">${esc(a.desc)}</div></div>${a.link ? `<a class="btn" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center" href="${esc(a.link)}" target="_blank">Detay</a>` : ''}</div>`).join('') || '<div class="muted">Duyuru yok.</div>'}</div>`;
 
 V.support = () => {
@@ -117,7 +119,7 @@ V.mods = () => {
       <div class="muted">Sunucunun zorunlu modları. Oyuncu silemez veya kapatamaz.</div>
       ${main.map((m) => `<div class="item">🔒 <b>${esc(m.fileName)}</b></div>`).join('') || '<div class="muted">Ana paket boş. Mod dosyaları mods/ klasörüne konur.</div>'}</div>
     <div class="panel hot"><div class="row between"><h2>Kullanıcı Modları</h2><span class="chip">${user.filter((m) => m.enabled).length} AÇIK</span></div><div class="mono">usermods/</div>
-      ${user.map((m) => `<div class="item" style="opacity:${m.enabled ? 1 : .5}">${m.iconUrl ? `<img src="${esc(m.iconUrl)}" alt="">` : ''}<div class="grow"><b>${esc(m.name)}</b><div class="muted">${esc(m.source)} · ${esc(m.version)}</div></div>
+      ${user.map((m) => `<div class="item" style="opacity:${m.enabled ? 1 : .5}"><img class="ico" src="${m.iconUrl ? esc(m.iconUrl) : 'assets/icon-chest.jpg'}" alt=""><div class="grow"><b>${esc(m.name)}</b><div class="muted">${esc(m.source)} · ${esc(m.version)}</div></div>
         <button class="switch ${m.enabled ? 'on' : ''}" data-act="toggle" data-f="${esc(m.fileName)}" aria-label="Aç/Kapat"><i></i></button>
         <button class="btn danger" data-act="remove" data-f="${esc(m.fileName)}" aria-label="Sil">✕</button></div>`).join('') || '<div class="muted">Henüz kullanıcı modu yok.</div>'}</div>
   </div>`;
@@ -129,7 +131,7 @@ V.store = () => `<div class="row between center wrap gap"><div><h1>Mod Mağazas�
   <div class="grid2">${S.results.map((r) => {
     const key = r.source + r.projectId;
     const done = S.mods.user.some((m) => m.source === r.source && m.projectId === r.projectId);
-    return `<div class="item">${r.iconUrl ? `<img src="${esc(r.iconUrl)}" alt="">` : '<div class="thumb"></div>'}<div class="grow"><b>${esc(r.name)}</b><div class="muted">${esc(r.description)}</div><div class="muted">${fmt(r.downloads)} indirme</div></div>
+    return `<div class="item"><img class="ico" src="${r.iconUrl ? esc(r.iconUrl) : 'assets/icon-chest.jpg'}" alt=""><div class="grow"><b>${esc(r.name)}</b><div class="muted">${esc(r.description)}</div><div class="muted">${fmt(r.downloads)} indirme</div></div>
       <button class="btn ${done ? 'ok' : 'pri'}" data-act="install" data-s="${r.source}" data-id="${esc(r.projectId)}" ${done || S.busy[key] ? 'disabled' : ''}>${done ? 'Kuruldu ✓' : S.busy[key] ? 'Kuruluyor…' : 'Kur'}</button></div>`;
   }).join('') || '<div class="muted">Arama yap veya listeyi yükle.</div>'}</div>`;
 
@@ -156,7 +158,7 @@ V.admin = () => {
   const e = S.edit || {};
   let body = '';
   if (S.tab === 'products') {
-    body = `<div class="grid2"><div class="panel"><h2>Ürün Yönetimi</h2>${S.D.products.map((p) => `<div class="item"><div class="grow"><b>${esc(p.name)}</b><div class="muted">${esc(p.category)}</div></div><b style="color:var(--gold)">${fmt(p.price)} Coin</b><button class="btn" data-act="pEdit" data-id="${p.id}">Düzenle</button><button class="btn danger" data-act="pDel" data-id="${p.id}">Sil</button></div>`).join('')}</div>
+    body = `<div class="grid2"><div class="panel"><h2>Ürün Yönetimi</h2>${S.D.products.map((p, i) => `<div class="item"><img class="ico" src="${icon(i)}" alt=""><div class="grow"><b>${esc(p.name)}</b><div class="muted">${esc(p.category)}</div></div><b style="color:var(--gold)">${fmt(p.price)} Coin</b><button class="btn" data-act="pEdit" data-id="${p.id}">Düzenle</button><button class="btn danger" data-act="pDel" data-id="${p.id}">Sil</button></div>`).join('')}</div>
     <div class="panel"><h2>${e.id ? 'Ürünü Düzenle' : 'Yeni Ürün'}</h2>
       <label class="f">Ürün adı<input type="text" id="pName" value="${esc(e.name)}"></label>
       <label class="f">Kategori<input type="text" id="pCat" value="${esc(e.category || 'Genel')}"></label>
