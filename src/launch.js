@@ -16,10 +16,15 @@ function prepareMods() {
     placed.add(f);
   }
   if (settings.get().loadUserMods) {
-    for (const m of manager.readIndex().filter((x) => x.enabled && !placed.has(x.fileName))) {
+    for (const m of manager.readIndex().filter((x) => x.kind === 'mod' && x.enabled && !placed.has(x.fileName))) {
       fs.copyFileSync(path.join(d.userMods, m.fileName), path.join(d.gameMods, m.fileName));
       placed.add(m.fileName);
     }
+  }
+  // Gölgelendirici ve kaynak paketleri: açık olanlar oyun klasörlerine kopyalanır.
+  for (const [dir, kind, from] of [[d.gameShaders, 'shader', d.userShaders], [d.gamePacks, 'pack', d.userPacks]]) {
+    for (const f of fs.readdirSync(dir)) fs.rmSync(path.join(dir, f), { force: true });
+    for (const m of manager.readIndex().filter((x) => x.kind === kind && x.enabled)) fs.copyFileSync(path.join(from, m.fileName), path.join(dir, m.fileName));
   }
   return [...placed];
 }

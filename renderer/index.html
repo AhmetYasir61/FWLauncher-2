@@ -2,28 +2,22 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; font-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src https:">
 <title>FireWing Launcher</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="win">
+<div class="win t-orange" id="win">
   <header class="top">
-    <div class="brand"><i class="logo"></i>FIREWING</div>
-    <nav class="nav" id="nav"></nav>
-    <div class="who">
-      <span class="coin" id="coins"></span>
-      <button class="pill" id="panelBtn" data-nav="admin" hidden>Panel</button>
-      <div class="me"><span class="avatar" id="av">A</span><span id="uname"></span></div>
-      <div class="wcb"><button data-win="min" aria-label="Küçült">–</button><button data-win="max" aria-label="Büyüt">▢</button><button data-win="close" aria-label="Kapat">✕</button></div>
-    </div>
+    <i class="logo"></i>
+    <div class="clock" id="clock"></div>
+    <div class="meter"><div class="mrow"><b id="online">—</b></div><div class="prog"><i style="width:0"></i></div><small>sunucu durumu bağlanınca görünür</small></div>
+    <div class="social" id="social"></div>
+    <div class="tuser"><div><small>Rütbe: <em id="urole"></em></small><b id="uname"></b></div><span class="head" id="av">A</span></div>
+    <div class="wcb"><button data-win="min" aria-label="Küçült">–</button><button data-win="max" aria-label="Büyüt">▢</button><button data-win="close" aria-label="Kapat">✕</button></div>
   </header>
-  <main class="main" id="content"></main>
-  <footer class="dock">
-    <div class="dprof"><i class="mini"></i><div>FireWing Network<small id="dockTags"></small></div></div>
-    <div class="dprog"><div class="prog"><i id="progFill" style="width:0"></i></div><small id="progText">Hazır</small></div>
-    <button class="play" id="btnPlay">OYNA</button>
-  </footer>
+  <nav class="rail" id="rail"></nav>
+  <main class="view" id="content"></main>
 </div>
 <div id="toast" class="toast" hidden></div>
 <script src="app.js"></script>

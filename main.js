@@ -10,7 +10,7 @@ let win;
 function createWindow() {
   win = new BrowserWindow({
     width: 1180, height: 740, minWidth: 980, minHeight: 640,
-    frame: false, backgroundColor: '#0a0607', icon: path.join(__dirname, 'renderer', 'assets', 'logo.png'),
+    frame: false, backgroundColor: '#0b0914', icon: path.join(__dirname, 'renderer', 'assets', 'logo.png'),
     webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, sandbox: true }
   });
   win.loadFile(path.join(__dirname, 'renderer', 'index.html'));
@@ -32,12 +32,13 @@ ipcMain.handle('settings:set', safe((p) => settings.set(p)));
 ipcMain.handle('mods:list', safe(() => mods.list()));
 ipcMain.handle('mods:search', safe((q) => mods.search(q)));
 ipcMain.handle('mods:install', safe((q) => mods.install(q)));
-ipcMain.handle('mods:toggle', safe((f) => mods.toggle(f)));
-ipcMain.handle('mods:remove', safe((f) => mods.remove(f)));
-ipcMain.handle('mods:addLocal', safe(async () => {
-  const r = await dialog.showOpenDialog(win, { filters: [{ name: 'Minecraft modu', extensions: ['jar'] }], properties: ['openFile'] });
+ipcMain.handle('mods:toggle', safe((f, k) => mods.toggle(f, k)));
+ipcMain.handle('mods:remove', safe((f, k) => mods.remove(f, k)));
+ipcMain.handle('mods:addLocal', safe(async (kind = 'mod') => {
+  const ext = kind === 'mod' ? 'jar' : 'zip';
+  const r = await dialog.showOpenDialog(win, { filters: [{ name: ext === 'jar' ? 'Minecraft modu' : 'Paket (.zip)', extensions: [ext] }], properties: ['openFile'] });
   if (r.canceled) return mods.readIndex();
-  return mods.addLocal(r.filePaths[0]);
+  return mods.addLocal(r.filePaths[0], kind);
 }));
 
 // Panel verileri (ürünler, duyurular, kullanıcılar...). Sunucu API'si bağlanana kadar yerel JSON.
@@ -55,7 +56,7 @@ ipcMain.handle('launch:start', safe(() => launch.start((p) => win.webContents.se
 
 ipcMain.handle('shell:openFolder', safe((which) => {
   const d = dirs();
-  return shell.openPath(which === 'main' ? d.mainMods : which === 'root' ? d.root : d.userMods);
+  return shell.openPath({ main: d.mainMods, root: d.root, shader: d.userShaders, pack: d.userPacks }[which] || d.userMods);
 }));
 
 app.whenReady().then(() => { dirs(); createWindow(); });
