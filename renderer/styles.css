@@ -1,10 +1,13 @@
+@font-face{font-family:"Minecraftia";src:url(assets/fonts/Minecraftia-Regular.ttf)}
+@font-face{font-family:"Minercraftory";src:url(assets/fonts/Minercraftory.ttf)}
+@font-face{font-family:"Minecrafter";src:url(assets/fonts/minecrafter/Minecrafter.Reg.ttf)}
 :root{--bg:#0a0607;--panel:#120a0c;--panel2:#190d10;--line:#3a1218;--ember:#ff3b4a;--red:#9b1021;--gold:#ff7a85;--text:#f5e8e8;--muted:#b08c90;--ok:#4ade80}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:14px/1.4 "Barlow","Segoe UI",system-ui,sans-serif}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:15px/1.5 "Minecraftia",system-ui,sans-serif}
 button,input,select,textarea{font:inherit;color:inherit}
 .app{height:100vh;display:grid;grid-template-columns:236px 1fr;grid-template-rows:44px 1fr 96px;grid-template-areas:"t t" "s c" "s b"}
 .titlebar{grid-area:t;display:flex;align-items:center;gap:24px;padding:0 0 0 18px;background:linear-gradient(90deg,#2a050b 0%,#070405 55%);border-bottom:1px solid #5a111b;-webkit-app-region:drag}
-.brand{font-weight:800;letter-spacing:2px;color:#ffd9dc}.brand span{color:var(--ember)}
+.brand{font-family:"Minecrafter","Minercraftory","Minecraftia",sans-serif;font-size:18px;letter-spacing:2px;color:#ffd9dc}.brand span{color:var(--ember)}
 .title{color:var(--muted);flex:1}
 .wc{display:flex;-webkit-app-region:no-drag}.wc button{width:46px;height:44px;border:0;background:transparent;cursor:pointer}.wc button:hover{background:#2a0f14}
 .side{grid-area:s;background:linear-gradient(180deg,#1a0a0e 0%,#0d0507 100%);border-right:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:8px;overflow:auto}
@@ -22,7 +25,7 @@ nav svg{width:18px;height:18px;stroke:var(--ember);fill:none;stroke-width:2;stro
 .muted{color:var(--muted);font-size:12px}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px}
 .content{grid-area:c;background:radial-gradient(ellipse at 85% 0%,rgba(155,16,33,.22),transparent 60%);padding:20px 24px;overflow:auto;min-width:0}
-h1{font-family:Cinzel,Georgia,serif;font-size:26px;margin:0 0 4px;color:#ffd9dc}
+h1{font-family:"Minercraftory","Minecraftia",sans-serif;font-size:26px;margin:0 0 4px;color:#ffd9dc}
 h2{font-size:16px;margin:0}
 .sub{color:var(--muted);margin:0 0 16px}
 .btn{height:36px;padding:0 14px;border-radius:6px;border:1px solid #7a1c26;background:#2a0f14;cursor:pointer;font-weight:600}
@@ -57,7 +60,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mu
 .tags{display:flex;gap:6px;font-size:12px}.tags span{padding:3px 10px;border-radius:4px;background:#2a0f14}.tags .a{color:var(--gold)}
 .barM{flex:1;display:flex;flex-direction:column;gap:6px;align-items:center}
 .prog{width:100%;height:8px;border-radius:4px;background:#2a0f14;overflow:hidden}.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));transition:width .3s}
-.play{width:210px;height:56px;border:0;border-radius:8px;font:800 22px Cinzel,Georgia,serif;letter-spacing:2px;background:linear-gradient(180deg,var(--ember),var(--red));color:#1a0508;cursor:pointer;box-shadow:0 0 18px rgba(255,40,60,.5)}
+.play{width:210px;height:56px;border:0;border-radius:8px;font:22px "Minecrafter","Minercraftory","Minecraftia",sans-serif;letter-spacing:2px;background:linear-gradient(180deg,var(--ember),var(--red));color:#1a0508;cursor:pointer;box-shadow:0 0 18px rgba(255,40,60,.5)}
 .play:disabled{opacity:.6}
 .toast{position:fixed;right:20px;bottom:110px;max-width:360px;padding:12px 16px;border-radius:8px;background:#2a0f14;border:1px solid var(--ember)}
 .toast.err{border-color:#ff2d3d;color:#ff9aa2}
@@ -72,3 +75,10 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mu
 .hero{min-height:260px;background:linear-gradient(90deg,rgba(10,6,7,.92) 0%,rgba(10,6,7,.45) 50%,rgba(10,6,7,.05) 100%),url(assets/hero.jpg) 75% 30%/cover}
 .banner{height:150px;border-radius:8px;border:1px solid var(--red);margin-bottom:16px;background:linear-gradient(90deg,rgba(10,6,7,.85),rgba(10,6,7,.1)),url(assets/banner.jpg) center/cover;display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
 .item img.ico,.thumb.ico{width:48px;height:48px;border-radius:8px;object-fit:cover;flex:none}
+
+/* pixel yazı: kalın taklidi ve ince ayar */
+b,h2{font-weight:400;font-family:"Minercraftory","Minecraftia",sans-serif}
+.btn,nav button,.tabs button{font-weight:400}
+.dot{vertical-align:middle}
+.muted,.eyebrow,.chip,.tags{font-family:"Minecraftia",sans-serif}
+.muted{font-size:12px}
