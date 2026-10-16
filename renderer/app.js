@@ -75,16 +75,14 @@ const V = {};
 V.home = () => {
   const news = S.D.announcements.slice(0, 3);
   const L = S.D.links;
-  return `<div class="hero"><h1>FIREWING NETWORK</h1><div style="color:#ff9ea6">Keşfet. Fethet. Yüksel.</div></div>
+  const ext = (u, t) => (u ? `<a class="btn" href="${esc(u)}" target="_blank">${t}</a>` : '');
+  const cover = (nav, img, t, d) => `<button class="card3" data-nav="${nav}"><div class="cover" style="background-image:linear-gradient(0deg,rgba(10,6,7,.7),rgba(10,6,7,.1)),url(assets/${img})"></div><div class="body"><b>${t}</b><div class="muted">${d}</div></div></button>`;
+  return `<div class="hero"><h1>FIREWING NETWORK</h1><div class="sub2">Keşfet. Fethet. Yüksel.</div>
+    <div class="row gap wrap" style="margin-top:12px"><button class="btn pri" data-nav="store">Mod Mağazası</button><button class="btn" data-nav="mods">Modlarım</button>${ext(L.discord, 'Discord')}${ext(L.web, 'Web Sitesi')}</div></div>
+  <div class="eyebrow" style="margin-bottom:8px">ÖNE ÇIKANLAR</div>
+  <div class="cards">${cover('store', 'icon-chest.jpg', 'Mod Mağazası', 'Modrinth ve CurseForge')}${cover('mods', 'bg.jpg', 'Modlarım', 'Ana paket + kullanıcı modları')}${cover('ads', 'banner.jpg', 'Duyurular', 'Haber ve etkinlikler')}</div>
   <div class="eyebrow" style="margin-bottom:8px">HABERLER</div>
-  <div class="grid3">${news.map((a) => `<div class="item"><div class="grow"><b>${esc(a.title)}</b><div class="muted">${esc(a.badge)}</div></div></div>`).join('') || '<div class="muted">Henüz haber yok.</div>'}</div>
-  <div class="eyebrow" style="margin:16px 0 8px">HIZLI ERİŞİM</div>
-  <div class="row gap">
-    <button class="btn" data-nav="store">Mod Mağazası</button>
-    <button class="btn" data-nav="mods">Modlarım</button>
-    ${L.discord ? `<a class="btn" style="display:inline-flex;align-items:center;color:inherit;text-decoration:none" href="${esc(L.discord)}" target="_blank">Discord</a>` : ''}
-    ${L.web ? `<a class="btn" style="display:inline-flex;align-items:center;color:inherit;text-decoration:none" href="${esc(L.web)}" target="_blank">Web Sitesi</a>` : ''}
-  </div>`;
+  <div class="grid3">${news.map((a) => `<div class="item"><div class="grow"><b>${esc(a.title)}</b><div class="muted">${esc(a.badge)}</div></div></div>`).join('') || '<div class="muted">Henüz haber yok.</div>'}</div>`;
 };
 
 V.ads = () => `<h1>Reklamlar & Duyurular</h1><p class="sub">Sunucudan haberler, etkinlikler ve kampanyalar.</p><div class="banner"><h2>FIREWING NETWORK</h2><div class="muted">Keşfet. Fethet. Yüksel.</div></div>
@@ -128,11 +126,11 @@ V.mods = () => {
 V.store = () => `<div class="row between center wrap gap"><div><h1>Mod Mağazası</h1><p class="sub">Seçilen modlar usermods/ klasörüne kurulur · ${esc(S.set.profile.mcVersion)} · ${esc(S.set.profile.loader)}</p></div><button class="btn" data-nav="mods">← Mod Yöneticisi</button></div>
   <div class="tabs"><button class="${S.source === 'modrinth' ? 'on' : ''}" data-act="source" data-s="modrinth">Modrinth</button><button class="${S.source === 'curseforge' ? 'on' : ''}" data-act="source" data-s="curseforge">CurseForge</button></div>
   <div class="row gap" style="margin-bottom:16px"><input type="search" id="q" placeholder="Mod ara…" value="${esc(S.query)}"><button class="btn pri" data-act="search">Ara</button></div>
-  <div class="grid2">${S.results.map((r) => {
+  <div class="cards">${S.results.map((r) => {
     const key = r.source + r.projectId;
     const done = S.mods.user.some((m) => m.source === r.source && m.projectId === r.projectId);
-    return `<div class="item"><img class="ico" src="${r.iconUrl ? esc(r.iconUrl) : 'assets/icon-chest.jpg'}" alt=""><div class="grow"><b>${esc(r.name)}</b><div class="muted">${esc(r.description)}</div><div class="muted">${fmt(r.downloads)} indirme</div></div>
-      <button class="btn ${done ? 'ok' : 'pri'}" data-act="install" data-s="${r.source}" data-id="${esc(r.projectId)}" ${done || S.busy[key] ? 'disabled' : ''}>${done ? 'Kuruldu ✓' : S.busy[key] ? 'Kuruluyor…' : 'Kur'}</button></div>`;
+    return `<div class="card3"><div class="cover" style="background:linear-gradient(135deg,#3a0f14,#12060a)"><img src="${r.iconUrl ? esc(r.iconUrl) : 'assets/icon-chest.jpg'}" alt=""></div><div class="body"><b>${esc(r.name)}</b><div class="muted">${esc(r.description)}</div><div class="row between" style="margin-top:6px"><span class="muted">${fmt(r.downloads)} indirme</span>
+      <button class="btn ${done ? 'ok' : 'pri'}" data-act="install" data-s="${r.source}" data-id="${esc(r.projectId)}" ${done || S.busy[key] ? 'disabled' : ''}>${done ? 'Kuruldu ✓' : S.busy[key] ? 'Kuruluyor…' : 'Kur'}</button></div></div></div>`;
   }).join('') || '<div class="muted">Arama yap veya listeyi yükle.</div>'}</div>`;
 
 const sw = (on, ch) => `<button class="switch ${on ? 'on' : ''}" data-act="flag" data-k="${ch}" aria-label="${ch}"><i></i></button>`;

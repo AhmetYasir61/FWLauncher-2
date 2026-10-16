@@ -83,35 +83,47 @@ b,h2{font-weight:400;font-family:"Minercraftory","Minecraftia",sans-serif}
 .muted,.eyebrow,.chip,.tags{font-family:"Minecraftia",sans-serif}
 .muted{font-size:12px}
 
-/* === Minecraft arayüz dili: köşeli, kabartmalı, piksel yazı === */
-body,.win{font-family:"Minecraftia",sans-serif;font-size:15px}
+/* === Modern oyun launcher dili: cam paneller, yuvarlak köşe, kapak kartları === */
+body,.win,.app{font-family:"Minecraftia",sans-serif;font-size:15px}
+.app,.win{background:radial-gradient(900px 520px at 88% -8%,rgba(255,40,60,.24),transparent 60%),radial-gradient(700px 520px at 0% 100%,rgba(155,16,33,.28),transparent 60%),#0a0607}
 button,input,select,textarea,.win button{font-family:"Minecraftia",sans-serif}
-h1{font-family:"Minecraftia",sans-serif;font-size:22px;font-weight:400;color:#ffd9dc;text-shadow:2px 2px 0 #000}
-h2{font-family:"Minecraftia",sans-serif;font-size:16px;font-weight:400;text-shadow:1px 1px 0 #000}
+h1{font-family:"Minecraftia",sans-serif;font-size:24px;font-weight:400;color:#fff;text-shadow:0 0 22px rgba(255,40,60,.55)}
+h2{font-family:"Minecraftia",sans-serif;font-size:16px;font-weight:400}
 b{font-family:"Minecraftia",sans-serif;font-weight:400;color:#fff}
-.hero h1{font-family:"Minecrafter","Minecraftia",sans-serif;font-size:34px;letter-spacing:2px;text-shadow:3px 3px 0 #000}
+.hero h1{font-family:"Minecrafter","Minecraftia",sans-serif;font-size:36px;letter-spacing:2px;text-shadow:0 0 28px rgba(255,40,60,.7),3px 3px 0 #000}
 .card.row:not(.profile) b{font-family:"Minercraftory","Minecraftia",sans-serif;color:#ff7a85}
-.btn,.panel,.card,.item,.field,.select,.chip,.tabs a,.tabs button,.tags span,.hero,.banner,.avatar,.thumb,img.ico,.prog,.prog i,.play,nav a,nav button,input[type=text],input[type=number],input[type=search],select,textarea,.toast,.switch,.switch i{border-radius:0!important}
-.btn,.tabs a,.tabs button{border:2px solid #000;background:#4a1a22;color:#fff;text-shadow:1px 1px 0 #000;box-shadow:inset 2px 2px 0 rgba(255,255,255,.2),inset -3px -3px 0 rgba(0,0,0,.5)}
-.btn:hover,.tabs button:hover{background:#6a232d}
-.btn.pri,.tabs a.on,.tabs button.on{background:#c0202e;border-color:#000;color:#fff;box-shadow:inset 2px 2px 0 rgba(255,150,150,.5),inset -3px -3px 0 rgba(0,0,0,.5)}
-.btn.danger{background:#5a1018;color:#ffd0d4}
-.btn.ok{background:#14532d;color:#bbf7d0}
-.panel,.card{border:2px solid #000;box-shadow:inset 2px 2px 0 rgba(255,80,100,.14),inset -2px -2px 0 rgba(0,0,0,.55)}
-.panel.hot{box-shadow:inset 2px 2px 0 rgba(255,80,100,.35),inset -2px -2px 0 rgba(0,0,0,.55),0 0 14px rgba(255,40,60,.3)}
-.item{border:2px solid #000;box-shadow:inset 2px 2px 0 rgba(255,255,255,.06),inset -2px -2px 0 rgba(0,0,0,.5)}
-.field,.select,input[type=text],input[type=number],input[type=search],select,textarea{border:2px solid #000;background:#0d0709;box-shadow:inset 2px 2px 0 rgba(0,0,0,.6)}
-nav a,nav button{border:2px solid transparent;text-shadow:1px 1px 0 #000}
-nav a.on,nav button.on{background:#4a1018;border-color:#000;box-shadow:inset 2px 2px 0 rgba(255,100,110,.4),inset -2px -2px 0 rgba(0,0,0,.5)}
-.chip{border:1px solid #000;box-shadow:inset 1px 1px 0 rgba(255,255,255,.15)}
-.tags span{border:1px solid #000}
-.prog{height:14px;border:2px solid #000;background:#0d0709}
-.prog i{background:repeating-linear-gradient(90deg,#d0202e 0 10px,#7a0d18 10px 12px)}
-.play{border:2px solid #000;background:#c0202e;color:#fff;font-size:24px;text-shadow:3px 3px 0 #000;box-shadow:inset 3px 3px 0 rgba(255,170,170,.5),inset -4px -4px 0 rgba(0,0,0,.5)}
-.hero,.banner{border:2px solid #000;box-shadow:inset 0 0 0 2px rgba(255,60,80,.45)}
-.avatar{border:2px solid #000}
-.switch{border:2px solid #000}
-.titlebar{border-bottom:3px solid #000}
-.side{border-right:3px solid #000}
-.bar{border-top:3px solid #000}
+.titlebar{background:rgba(0,0,0,.4);border-bottom:1px solid rgba(255,70,90,.14)}
+.side{background:rgba(18,8,11,.72);backdrop-filter:blur(14px);border-right:1px solid rgba(255,70,90,.14)}
+.bar{background:rgba(18,8,11,.82);backdrop-filter:blur(14px);border-top:1px solid rgba(255,70,90,.14)}
+nav a,nav button{border-radius:12px;border:1px solid transparent}
+nav a.on,nav button.on{background:linear-gradient(90deg,rgba(255,45,61,.38),rgba(155,16,33,.12));border-color:rgba(255,80,100,.55);box-shadow:0 0 18px rgba(255,40,60,.25)}
+.panel,.card,.item{background:rgba(26,11,15,.74);border:1px solid rgba(255,70,90,.16);box-shadow:0 8px 28px rgba(0,0,0,.35)}
+.panel,.card{border-radius:16px}
+.item{border-radius:14px}
+.panel.hot{border-color:rgba(255,80,100,.5);box-shadow:0 0 26px rgba(255,40,60,.22),0 8px 28px rgba(0,0,0,.35)}
+.card.profile{border-color:rgba(255,80,100,.5)}
+.btn,.tabs a,.tabs button{border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:#fff;text-shadow:none;box-shadow:none}
+.btn:hover,.tabs button:hover{background:rgba(255,255,255,.14)}
+.btn.pri,.tabs a.on,.tabs button.on{background:linear-gradient(180deg,#ff3b4a,#b3162a);border-color:rgba(255,130,140,.6);box-shadow:0 6px 20px rgba(255,40,60,.35)}
+.tabs a,.tabs button{border-radius:999px}
+.btn.danger{background:rgba(255,45,61,.16);border-color:rgba(255,80,100,.4);color:#ffb3ba}
+.btn.ok{background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.5);color:#86efac}
+.field,.select,input[type=text],input[type=number],input[type=search],select,textarea{border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.38);box-shadow:none}
+.chip{border-radius:999px;border:0;background:rgba(255,45,61,.2);color:#ff9ea6;box-shadow:none}
+.tags span{border-radius:8px;border:0;background:rgba(255,255,255,.07)}
+.prog{height:8px;border:0;border-radius:999px;background:rgba(255,255,255,.1)}
+.prog i{border-radius:999px;background:linear-gradient(90deg,#9b1021,#ff3b4a)}
+.play{border:1px solid rgba(255,140,150,.6);border-radius:14px;background:linear-gradient(180deg,#ff3b4a,#a8122a);color:#fff;font-size:24px;text-shadow:2px 2px 0 rgba(0,0,0,.6);box-shadow:0 8px 28px rgba(255,40,60,.45)}
+.avatar,.thumb,img.ico{border-radius:12px}
+.switch{border:0;border-radius:999px}.switch i{border-radius:50%}
+.hero{border:1px solid rgba(255,90,110,.5);border-radius:22px;box-shadow:0 0 36px rgba(255,40,60,.3);height:220px;min-height:220px;padding:24px 28px;margin-bottom:16px}
+.banner{border:1px solid rgba(255,90,110,.5);border-radius:18px;box-shadow:none}
+.sub2{color:#ff9ea6}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:16px}
+.card3{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:rgba(26,11,15,.74);border:1px solid rgba(255,70,90,.18);box-shadow:0 8px 28px rgba(0,0,0,.35);padding:0;text-align:left;color:inherit;cursor:pointer;text-decoration:none}
+.card3:hover{border-color:rgba(255,90,110,.65)}
+.card3 .cover{height:96px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center}
+.card3 .cover img{width:64px;height:64px;border-radius:14px;object-fit:cover;box-shadow:0 6px 20px rgba(0,0,0,.6)}
+.card3 .body{padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.card3 .body .row{align-items:center}
 .dot{vertical-align:middle}
