@@ -73,7 +73,7 @@ const V = {};
 V.home = () => {
   const news = S.D.announcements.slice(0, 3);
   const L = S.D.links;
-  return `<div class="hero"><h1>FIREWING NETWORK</h1><div style="color:#ffc98a">Keşfet. Fethet. Yüksel.</div></div>
+  return `<div class="hero"><h1>FIREWING NETWORK</h1><div style="color:#ff9ea6">Keşfet. Fethet. Yüksel.</div></div>
   <div class="eyebrow" style="margin-bottom:8px">HABERLER</div>
   <div class="grid3">${news.map((a) => `<div class="item"><div class="grow"><b>${esc(a.title)}</b><div class="muted">${esc(a.badge)}</div></div></div>`).join('') || '<div class="muted">Henüz haber yok.</div>'}</div>
   <div class="eyebrow" style="margin:16px 0 8px">HIZLI ERİŞİM</div>
