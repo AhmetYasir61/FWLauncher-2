@@ -10,7 +10,7 @@ let win;
 function createWindow() {
   win = new BrowserWindow({
     width: 1180, height: 740, minWidth: 980, minHeight: 640,
-    frame: false, backgroundColor: '#120d0b',
+    frame: false, backgroundColor: '#0a0607', icon: path.join(__dirname, 'renderer', 'assets', 'logo.png'),
     webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, sandbox: true }
   });
   win.loadFile(path.join(__dirname, 'renderer', 'index.html'));
