@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'">
+<title>FireWing Launcher</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="titlebar">
+    <div class="brand">FIREWING <span>LAUNCHER</span></div>
+    <div class="title" id="viewTitle"></div>
+    <div class="wc">
+      <button data-win="min" aria-label="Küçült">–</button>
+      <button data-win="max" aria-label="Büyüt">▢</button>
+      <button data-win="close" aria-label="Kapat">✕</button>
+    </div>
+  </header>
+  <aside class="side">
+    <div class="eyebrow">MENÜ</div>
+    <nav id="nav"></nav>
+    <div class="grow"></div>
+    <div class="card" id="server"></div>
+    <div class="card row"><div><div class="eyebrow">BAKİYE</div><b id="coins"></b></div><button class="btn">Gönder</button></div>
+    <div class="card row profile"><div class="avatar">A</div><div><b id="uname"></b><div class="muted" id="urole"></div></div></div>
+  </aside>
+  <main class="content" id="content"></main>
+  <footer class="bar">
+    <div class="barL">
+      <div class="row gap"><div class="select">FireWing Network ▾</div><button class="btn" id="btnKur">KUR</button></div>
+      <div class="tags" id="tags"></div>
+    </div>
+    <div class="barM"><div class="prog"><i id="progFill"></i></div><div class="muted" id="progText">Hazır</div></div>
+    <button class="play" id="btnPlay">OYNA</button>
+  </footer>
+</div>
+<div id="toast" class="toast" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
