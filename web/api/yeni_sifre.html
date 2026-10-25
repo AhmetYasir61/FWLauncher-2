@@ -1,0 +1,84 @@
+<!-- ======================================================================= -->
+<!--              yeni_sifre.html (3. Adım: Yeni Şifre Belirleme)            -->
+<!-- ======================================================================= -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yeni Şifre Belirle - FireWing Network</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+    body, html { height: 100%; margin: 0; font-family: 'Roboto', sans-serif; color: white; }
+    .video-background { position: fixed; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translateX(-50%) translateY(-50%); z-index: -2; filter: brightness(0.4); }
+    .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at center, rgba(18,18,18,0.4) 0%, rgba(18,18,18,0.9) 100%); z-index: -1; }
+    .form-container { display: flex; justify-content: center; align-items: center; height: 100%; }
+    .form-box { background: rgba(28, 28, 30, 0.85); backdrop-filter: blur(10px); padding: 2.5rem; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); border: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 380px; text-align: center; animation: fadeIn 1s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .logo { width: 150px; margin-bottom: 1.5rem; }
+    h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 700; font-size: 1.75rem; }
+    p.form-subtitle { color:#aaa; margin-top:0; margin-bottom: 2rem; font-size: 0.9rem; }
+    .input-group { text-align: left; margin-bottom: 1.25rem; }
+    label { display: block; margin-bottom: 0.5rem; color: #aaa; font-size: 0.9rem; }
+    input { width: 100%; padding: 0.8rem; border-radius: 6px; border: 1px solid #444; background-color: #252525; color: white; box-sizing: border-box; font-size: 1rem; }
+    button { width: 100%; padding: 0.8rem; border: none; border-radius: 6px; background: #E53935; color: white; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background-color 0.3s; margin-top: 1rem; }
+    #result { margin-top: 1rem; padding: 0.75rem; border-radius: 6px; font-weight: bold; display: none; }
+    .error { display: block; color: #EF5350; background-color: rgba(239, 83, 80, 0.1); border: 1px solid rgba(239, 83, 80, 0.5); }
+    .success { display: block; color: #66BB6A; background-color: rgba(102, 187, 106, 0.1); border: 1px solid rgba(102, 187, 106, 0.5); }
+    .extra-links { margin-top: 1.5rem; font-size: 0.9rem; }
+    .extra-links a { color: #0091EA; text-decoration: none; }
+    .extra-links a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <video playsinline autoplay muted loop class="video-background"> <source src="https://assets.mixkit.co/videos/preview/mixkit-red-smoke-moving-in-a-dark-background-34823-large.mp4" type="video/mp4"> </video>
+    <div class="form-container">
+        <div class="form-box">
+            <a href="../index.html"><img src="https://firewing.store/img/logo5.png" alt="FireWing Network Logo" class="logo"></a>
+            <h2>Yeni Şifre Belirle</h2>
+            <p class="form-subtitle">Lütfen yeni şifrenizi girin.</p>
+            <form id="newPasswordForm">
+                <div class="input-group">
+                    <label for="password">Yeni Şifre</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="password_confirm">Yeni Şifre (Tekrar)</label>
+                    <input type="password" id="password_confirm" required>
+                </div>
+                <button type="submit" id="submitBtn">Şifreyi Değiştir</button>
+            </form>
+            <div id="result"></div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('newPasswordForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('password_confirm').value;
+            if (password !== passwordConfirm) {
+                alert("Şifreler uyuşmuyor!");
+                return;
+            }
+            const key = new URLSearchParams(window.location.search).get('key');
+            try {
+                const response = await fetch('update_password.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ key, password })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    alert("Şifreniz başarıyla güncellendi! Giriş sayfasına yönlendiriliyorsunuz.");
+                    window.location.href = 'login.html';
+                } else {
+                    alert(data.message || "Bilinmeyen bir hata oluştu.");
+                }
+            } catch (error) {
+                alert("Şifre güncellenirken kritik bir hata oluştu.");
+            }
+        });
+    </script>
+</body>
+</html>

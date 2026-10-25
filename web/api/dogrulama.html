@@ -1,0 +1,117 @@
+<!-- ======================================================================= -->
+<!--              dogrulama.html (2. Adım: 6 Haneli Kodu Girme)              -->
+<!-- ======================================================================= -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Doğrulama Kodu - FireWing Network</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+    body, html { height: 100%; margin: 0; font-family: 'Roboto', sans-serif; color: white; }
+    .video-background { position: fixed; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translateX(-50%) translateY(-50%); z-index: -2; filter: brightness(0.4); }
+    .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at center, rgba(18,18,18,0.4) 0%, rgba(18,18,18,0.9) 100%); z-index: -1; }
+    .form-container { display: flex; justify-content: center; align-items: center; height: 100%; }
+    .form-box { background: rgba(28, 28, 30, 0.85); backdrop-filter: blur(10px); padding: 2.5rem; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); border: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 380px; text-align: center; animation: fadeIn 1s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .logo { width: 150px; margin-bottom: 1.5rem; }
+    h2 { margin-top: 0; margin-bottom: 0.5rem; font-weight: 700; font-size: 1.75rem; }
+    p.form-subtitle { color:#aaa; margin-top:0; margin-bottom: 2rem; font-size: 0.9rem; }
+    .input-group { text-align: left; margin-bottom: 1.25rem; }
+    label { display: block; margin-bottom: 0.5rem; color: #aaa; font-size: 0.9rem; }
+    input { width: 100%; padding: 0.8rem; border-radius: 6px; border: 1px solid #444; background-color: #252525; color: white; box-sizing: border-box; font-size: 1rem; }
+    button { width: 100%; padding: 0.8rem; border: none; border-radius: 6px; background: #E53935; color: white; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background-color 0.3s; margin-top: 1rem; }
+    #result { margin-top: 1rem; padding: 0.75rem; border-radius: 6px; font-weight: bold; display: none; }
+    .error { display: block; color: #EF5350; background-color: rgba(239, 83, 80, 0.1); border: 1px solid rgba(239, 83, 80, 0.5); }
+    .success { display: block; color: #66BB6A; background-color: rgba(102, 187, 106, 0.1); border: 1px solid rgba(102, 187, 106, 0.5); }
+    .extra-links { margin-top: 1.5rem; font-size: 0.9rem; }
+    .extra-links a { color: #0091EA; text-decoration: none; }
+    .extra-links a:hover { text-decoration: underline; }
+    .code-inputs {
+            display: flex; /* Kutuları yan yana dizmek için flexbox kullan */
+            justify-content: center; /* Ortala */
+            gap: 10px; /* Kutular arası boşluk */
+            margin: 2rem auto;
+        }
+        .code-inputs input {
+            width: 40px; /* Her kutunun genişliği */
+            height: 50px;
+            text-align: center;
+            font-size: 1.5rem;
+            border-radius: 8px;
+        }
+    </style>
+</style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <video playsinline autoplay muted loop class="video-background"> <source src="https://assets.mixkit.co/videos/preview/mixkit-red-smoke-moving-in-a-dark-background-34823-large.mp4" type="video/mp4"> </video>
+    <div class="form-container">
+        <div class="form-box">
+            <a href="../index.html"><img src="https://firewing.store/img/logo5.png" alt="FireWing Network Logo" class="logo"></a>
+            <h2>Kodu Doğrula</h2>
+            <p class="form-subtitle">Lütfen e-posta adresinize gönderilen 6 haneli kodu girin.</p>
+            <form id="verifyForm">
+                <div class="code-inputs" id="codeInputs">
+                    <input type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1" required>
+                    <input type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1" required>
+                    <input type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1" required>
+                    <input type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1" required>
+                    <input type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1" required>
+                    <input type="text" pattern="[0-9]*" inputmode="numeric" maxlength="1" required>
+                </div>
+                <button type="submit" id="submitBtn">Doğrula</button>
+            </form>
+            <div id="result"></div>
+        </div>
+    </div>
+    <script>
+        const codeInputsContainer = document.getElementById('codeInputs');
+        const inputs = [...codeInputsContainer.children];
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                // Sadece 1 karakter girildiğinde bir sonraki kutuya geç
+                if (input.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                // Backspace tuşuna basıldığında ve kutu boşsa bir önceki kutuya git
+                if (e.key === "Backspace" && input.value.length === 0 && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+        
+        document.getElementById('verifyForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const code = inputs.map(input => input.value).join('');
+            const email = new URLSearchParams(window.location.search).get('email');
+            
+            if (code.length !== 6) {
+                alert("Lütfen 6 haneli kodu eksiksiz girin.");
+                return;
+            }
+
+            try {
+                const response = await fetch('verify_code.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, code })
+                });
+                const data = await response.json();
+                if (data.success && data.resetKey) {
+                    window.location.href = `yeni_sifre.html?key=${data.resetKey}`;
+                } else {
+                    alert(data.message || "Doğrulama başarısız.");
+                }
+            } catch (error) {
+                alert("Doğrulama sırasında kritik bir hata oluştu.");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self'">
+<title>FireWing Network</title>
+<meta name="description" content="FireWing Network Minecraft sunucusu. Sunucu adresi: play.firewing.store">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="/"><img src="assets/logo.png" alt="">FIREWING</a>
+  <nav class="links"><a href="#haberler">Haberler</a><a href="#topluluk">Topluluk</a><a href="#ozellikler">Özellikler</a><a href="#magaza">Mağaza</a><a href="#indir">İndir</a></nav>
+  <a class="btn sm" href="panel.html" id="accountBtn">Giriş yap</a>
+</div></header>
+
+<section class="hero"><div class="art"></div><div class="wrap">
+  <span class="chip" id="verChip">play.firewing.store</span>
+  <div class="big" style="margin-top:14px">FIRE<em>WING</em></div>
+  <div class="big" style="font-size:clamp(28px,5vw,52px);margin-top:8px">NETWORK</div>
+  <p class="lead" id="heroText">Keşfet, fethet, yüksel. Kendi launcher'ımızla tek tıkla bağlan; modların, gölgelendiricilerin ve kaynak paketlerin hazır.</p>
+  <div class="row">
+    <div class="ipbox"><code id="ip">play.firewing.store</code><button class="btn pri sm" id="copyIp">IP Kopyala</button></div>
+    <a class="btn violet" href="#indir">Launcher'ı İndir</a>
+  </div>
+  <div class="status"><span class="dot" id="dot"></span><span id="statusText">Sunucu durumu yükleniyor…</span></div>
+</div></section>
+
+<section id="haberler"><div class="wrap">
+  <div class="head"><div><span class="eyebrow">Son gelişmeler</span><h2>Haberler</h2></div></div>
+  <div class="grid3" id="news"><div class="muted">Yükleniyor…</div></div>
+</div></section>
+
+<section id="ozellikler"><div class="wrap">
+  <div class="head"><div><span class="eyebrow">Neden FireWing</span><h2>Özellikler</h2></div></div>
+  <div class="grid3">
+    <div class="feat"><div class="ic" style="background:rgba(255,90,78,.18)">🔥</div><h3>Kendi launcher'ımız</h3><p class="muted">Sunucunun mod paketi otomatik iner ve güncel kalır. Sen sadece Oyna'ya basarsın.</p></div>
+    <div class="feat"><div class="ic" style="background:rgba(124,92,255,.2)">🧩</div><h3>Kendi modların</h3><p class="muted">Modrinth ve CurseForge'dan mod, gölgelendirici ve kaynak paketi ekle; ana paket bozulmaz.</p></div>
+    <div class="feat"><div class="ic" style="background:rgba(20,184,166,.2)">🛡️</div><h3>Aktif ekip</h3><p class="muted">Destek talebini launcher'dan ya da siteden aç, yetkililer hızla yanıtlasın.</p></div>
+  </div>
+</div></section>
+
+<section id="magaza"><div class="wrap">
+  <div class="head"><div><span class="eyebrow">Rütbeler ve eşyalar</span><h2>Mağaza</h2></div><a class="btn sm" href="panel.html">Hesabım</a></div>
+  <div class="grid3" id="products"><div class="muted">Yükleniyor…</div></div>
+</div></section>
+
+<section id="topluluk"><div class="wrap" id="feedSec">
+  <div class="head"><div><span class="eyebrow">Topluluk</span><h2>Sunucunun yıldızları</h2></div></div>
+  <div class="grid3" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
+    <div class="feat"><h3 style="margin-bottom:12px">En çok coin</h3><div id="topCoins" style="display:flex;flex-direction:column;gap:8px"></div></div>
+    <div class="feat"><h3 style="margin-bottom:12px">Son destekler</h3><div id="topups" style="display:flex;flex-direction:column;gap:8px"></div></div>
+  </div>
+</div></section>
+
+<section id="indir"><div class="wrap">
+  <div class="cta">
+    <div><span class="eyebrow">Windows · Linux</span><h2>Launcher'ı indir</h2><p class="muted" style="max-width:520px;margin:8px 0 0">Kur, giriş yap, Oyna'ya bas. Sunucu adresi ve mod paketi otomatik ayarlanır.</p></div>
+    <div class="row"><a class="btn pri" id="dlBtn" href="#">İndir</a><a class="btn" id="discordBtn" href="#" target="_blank" rel="noopener">Discord</a></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap row" style="justify-content:space-between">
+  <span>© FireWing Network · play.firewing.store</span>
+  <span>Mojang veya Microsoft ile bağlantılı değildir.</span>
+</div></footer>
+<div class="toast" id="toast" hidden></div>
+<script src="js/api.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

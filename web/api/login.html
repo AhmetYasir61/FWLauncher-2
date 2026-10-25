@@ -1,0 +1,78 @@
+<!-- ======================================================================= -->
+<!--                          login.html (Giriş Sayfası)                       -->
+<!-- ======================================================================= -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>FireWing Network - Giriş Yap</title>
+    <style>
+        /* Ana sayfayla aynı arka plan ve temel stiller */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+        body, html { height: 100%; margin: 0; font-family: 'Roboto', sans-serif; color: white; }
+        .video-background { position: fixed; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translateX(-50%) translateY(-50%); z-index: -2; filter: brightness(0.4); }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at center, rgba(18,18,18,0.4) 0%, rgba(18,18,18,0.9) 100%); z-index: -1; }
+
+        /* Giriş formu için özel stiller */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .login-box {
+            background: rgba(28, 28, 30, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+        .logo { width: 150px; margin-bottom: 1.5rem; }
+        h2 { margin-top: 0; margin-bottom: 2rem; font-weight: 700; }
+        .input-group { text-align: left; margin-bottom: 1.25rem; }
+        label { display: block; margin-bottom: 0.5rem; color: #aaa; font-size: 0.9rem; }
+        input { width: 100%; padding: 0.8rem; border-radius: 6px; border: 1px solid #444; background-color: #252525; color: white; box-sizing: border-box; font-size: 1rem; }
+        button { width: 100%; padding: 0.8rem; border: none; border-radius: 6px; background: #E53935; color: white; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background-color 0.3s; margin-top: 1rem; }
+        #result { margin-top: 1rem; padding: 0.75rem; border-radius: 6px; font-weight: bold; display: none; }
+        .error { display: block; color: #EF5350; background-color: rgba(239, 83, 80, 0.1); border: 1px solid rgba(239, 83, 80, 0.5); }
+        .extra-links { margin-top: 1.5rem; font-size: 0.9rem; }
+        .extra-links a { color: #0091EA; text-decoration: none; }
+        .extra-links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <video playsinline autoplay muted loop class="video-background">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-red-smoke-moving-in-a-dark-background-34823-large.mp4" type="video/mp4">
+    </video>
+
+    <div class="login-container">
+        <div class="login-box">
+            <img src="https://firewing.store/img/logo5.png" alt="FireWing Network Logo" class="logo">
+            <h2>Hesabına Giriş Yap</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Kullanıcı Adı</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Şifre</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" id="submitBtn">Giriş Yap</button>
+            </form>
+            <div id="result"></div>
+            <div class="extra-links">
+                <a href="sifremi_unuttum.html">Şifremi Unuttum</a> | <a href="Kayıt.html">Yeni Hesap Oluştur</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Giriş formunu yöneten JavaScript kodu (öncekiyle aynı)
+    </script>
+</body>
+</html>
