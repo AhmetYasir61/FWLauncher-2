@@ -148,8 +148,8 @@ V.surumler = async () => {
   return packsHtml();
 };
 
-const cpHtml = () => `<div class="box"><h2>Coin Paketleri</h2><div class="muted">Fiyatlar kuruş cinsinden (29,00 TL = 2900). Tebex ürün numarası coin_packages.php içinde eşlenir.</div></div>
-  ${P.data.coinPkgs.map((p, i) => `<div class="box"><div class="grid3">${field('Kimlik', `cp_${i}_id`, p.id)}${field('Ad', `cp_${i}_name`, p.name)}${field('Coin', `cp_${i}_coins`, p.coins, 'number')}${field('Fiyat (kuruş)', `cp_${i}_price`, p.price, 'number')}${field('Eski fiyat (kuruş)', `cp_${i}_oldPrice`, p.oldPrice, 'number')}<label class="f">Popüler<select id="cp_${i}_popular"><option value="0">Hayır</option><option value="1" ${p.popular ? 'selected' : ''}>Evet</option></select></label></div><button class="btn sm danger" data-act="cpdel" data-i="${i}" style="align-self:flex-start">Kaldır</button></div>`).join('')}
+const cpHtml = () => `<div class="box"><h2>Coin Paketleri</h2><div class="muted">Fiyatlar sent cinsinden (4.24 USD = 424). Gerçek ücreti Tebex'teki paket fiyatı belirler. Tebex ürün numarası coin_packages.php içinde eşlenir.</div></div>
+  ${P.data.coinPkgs.map((p, i) => `<div class="box"><div class="grid3">${field('Kimlik', `cp_${i}_id`, p.id)}${field('Ad', `cp_${i}_name`, p.name)}${field('Coin', `cp_${i}_coins`, p.coins, 'number')}${field('Fiyat (sent)', `cp_${i}_price`, p.price, 'number')}${field('Eski fiyat (sent)', `cp_${i}_oldPrice`, p.oldPrice, 'number')}<label class="f">Popüler<select id="cp_${i}_popular"><option value="0">Hayır</option><option value="1" ${p.popular ? 'selected' : ''}>Evet</option></select></label></div><button class="btn sm danger" data-act="cpdel" data-i="${i}" style="align-self:flex-start">Kaldır</button></div>`).join('')}
   <div class="row"><button class="btn" data-act="cpadd">+ Paket ekle</button><button class="btn pri" data-act="cpsave">Kaydet</button></div>`;
 V.paketler = async () => {
   if (!P.data.coinPkgs) P.data.coinPkgs = (await FW.get('coin_packages_list.php')).packages || [];

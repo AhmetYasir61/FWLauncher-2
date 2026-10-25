@@ -57,10 +57,9 @@ function pw_coin_packages() {
     return $out;
 }
 
-function pw_price_label($kurus) {
-    $kurus = (int)$kurus;
-    $tl = $kurus / 100;
-    return ($kurus % 100 === 0) ? ('₺' . number_format($tl, 0, ',', '.')) : ('₺' . number_format($tl, 2, ',', '.'));
+function pw_price_label($cent) {
+    // Fiyatlar sent cinsinden (4.24 USD = 424); gerçek tahsilatı Tebex yapar.
+    return '$' . number_format(((int)$cent) / 100, 2, '.', ',');
 }
 
 // Ödeme kayıtları tablosunu (yoksa) oluştur.
