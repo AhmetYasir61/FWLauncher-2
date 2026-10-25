@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "check": "node --check main.js && node --check preload.js && node --check src/paths.js && node --check src/settings.js && node --check src/launch.js && node --check src/remote.js && node --check src/mods/manager.js && node --check src/mods/modrinth.js && node --check src/mods/curseforge.js && node --check renderer/app.js",
+    "check": "node --check main.js && node --check preload.js && node --check src/paths.js && node --check src/settings.js && node --check src/launch.js && node --check src/remote.js && node --check src/mods/manager.js && node --check src/mods/modrinth.js && node --check src/mods/curseforge.js && node --check renderer/app.js && node --check src/game/download.js && node --check src/game/minecraft.js && node --check src/game/loader.js && node --check src/game/java.js && node --check src/game/run.js",
     "dist": "electron-builder"
   },
   "devDependencies": {

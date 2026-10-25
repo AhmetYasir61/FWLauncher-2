@@ -67,7 +67,7 @@ ipcMain.handle('remote:logout', safe(() => remote.logout()));
 ipcMain.handle('remote:me', safe(() => (settings.get().session ? remote.call('me.php') : null)));
 ipcMain.handle('remote:packs', safe(() => remote.packs()));
 
-ipcMain.handle('launch:start', safe(() => launch.start((p) => win.webContents.send('launch:progress', p))));
+ipcMain.handle('launch:start', safe(() => launch.start((p) => { if (win && !win.isDestroyed()) win.webContents.send('launch:progress', p); })));
 
 ipcMain.handle('shell:openFolder', safe((which) => {
   const d = dirs();

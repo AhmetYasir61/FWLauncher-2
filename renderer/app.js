@@ -335,7 +335,8 @@ const actions = {
       S.set = await call(api.settings.get());
       await refreshMods();
       if (S.set.minimizeOnLaunch) api.win.minimize();
-    } finally { S.running = false; await render(); }
+    } catch (e) { S.running = false; S.prog = { pct: 0, text: e.message }; throw e; }
+    // Oyun açık kaldığı sürece OYNA kilitli kalır; kapanınca "done" olayı gelir.
   }
 };
 
@@ -386,6 +387,7 @@ document.addEventListener('error', (e) => {
 // ---------- başlatma ilerlemesi ----------
 api.launch.onProgress((p) => {
   S.prog = { pct: p.percent, text: p.step };
+  if (p.done) { S.running = false; const b = document.getElementById('btnPlay'); if (b) b.disabled = false; }
   const f = document.getElementById('progFill'), t = document.getElementById('progText');
   if (f) f.style.width = p.percent + '%';
   if (t) t.textContent = p.step;

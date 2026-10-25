@@ -26,5 +26,14 @@ npm start
 ## Web sitesi
 `web/` klasöründe; kurulum için `web/README.md`.
 
-## Henüz bağlı olmayanlar
-- `src/launch.js`: Minecraft/NeoForge'un indirilmesi ve oyunun java ile başlatılması (şu an mod klasörlerini hazırlar).
+## OYNA'ya basınca ne olur
+1. Panelde seçili sunucu paketi (`Versions/modpacks.json`) okunur, sürümü değiştiyse zip'teki modlar `mods/` klasörüne kurulur.
+2. Ana paket + açık kullanıcı modları, gölgelendiriciler ve kaynak paketleri `game/` klasörüne hazırlanır.
+3. Gereken Java sürümü bulunur; yoksa Adoptium'dan (veya paketteki `JavaUrl` adresinden) `runtime/` klasörüne indirilir.
+4. Minecraft (istemci, kütüphaneler, oyun dosyaları) Mojang'ın sunucularından `minecraft/` klasörüne indirilir.
+5. Yükleyici kurulur: NeoForge ve Forge resmi kurucularıyla (`--install-client`), Fabric meta servisinden.
+6. Oyun çevrimdışı (AuthMe) hesapla başlar ve paketteki `ServerIp:ServerPort` adresine otomatik bağlanır.
+   Launcher oturumu oyuna `-Dfirewing.username/token/hwid` JVM özellikleriyle ve `game/firewing_session.json` dosyasıyla verilir.
+
+Her şey bir kez indirilir; sonraki açılışlarda sadece eksik veya değişen dosyalar iner.
+Oyun çıktısı `game/logs/launcher.log` dosyasına yazılır (en fazla 20 MB).

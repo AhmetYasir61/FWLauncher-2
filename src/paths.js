@@ -23,9 +23,12 @@ function dirs() {
     gameDir: path.join(r, 'game'),
     gameMods: path.join(r, 'game', 'mods'),
     cache: path.join(r, 'cache'),
+    // Minecraft sürümleri, kütüphaneler ve assets (tüm profiller ortak kullanır)
+    mcDir: path.join(r, 'minecraft'),
+    runtime: path.join(r, 'runtime'),
     settings: path.join(r, 'launcher.json')
   };
-  for (const k of ['mainMods', 'userMods', 'userShaders', 'userPacks', 'gameMods', 'gameShaders', 'gamePacks', 'cache']) fs.mkdirSync(d[k], { recursive: true });
+  for (const k of ['mainMods', 'userMods', 'userShaders', 'userPacks', 'gameMods', 'gameShaders', 'gamePacks', 'cache', 'mcDir', 'runtime']) fs.mkdirSync(d[k], { recursive: true });
   return d;
 }
 
