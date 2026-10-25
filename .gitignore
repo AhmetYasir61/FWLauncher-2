@@ -3,3 +3,4 @@ dist/
 *.log
 web/api/secrets.php
 web/api/*.log
+teslim/
