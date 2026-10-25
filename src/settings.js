@@ -11,6 +11,11 @@ const DEFAULTS = {
   checkCompat: true,
   loadUserMods: true,
   curseforgeApiKey: '',
+  apiUrl: 'https://firewing.store/api',
+  session: null,
+  deviceId: '',
+  packId: '',
+  packVersion: '',
   profile: { name: 'FireWing Network', mcVersion: '1.21.4', loader: 'neoforge' }
 };
 

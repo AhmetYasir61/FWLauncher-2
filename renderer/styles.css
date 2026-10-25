@@ -155,7 +155,7 @@ textarea{height:84px;padding:10px 14px;resize:vertical}
 input:focus,select:focus,textarea:focus{border-color:rgba(var(--a2rgb),.7)}
 select option{background:#14101f}
 .range{width:100%;accent-color:var(--a1)}
-.toast{position:fixed;right:24px;bottom:28px;max-width:380px;padding:12px 16px;border-radius:14px;background:rgba(24,18,38,.96);border:1px solid rgba(var(--a2rgb),.6);box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:10}
+.toast{font:14px var(--sans);color:var(--text);position:fixed;right:24px;bottom:28px;max-width:380px;padding:12px 16px;border-radius:14px;background:rgba(24,18,38,.96);border:1px solid rgba(var(--a2rgb),.6);box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:10}
 .toast.err{border-color:#e83a4d;color:#ffb3ba}.toast[hidden]{display:none}
 .card3{font:inherit}
 .hide{display:none}

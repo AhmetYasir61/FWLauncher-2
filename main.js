@@ -4,6 +4,7 @@ const { dirs } = require('./src/paths');
 const settings = require('./src/settings');
 const mods = require('./src/mods/manager');
 const launch = require('./src/launch');
+const remote = require('./src/remote');
 
 let win;
 
@@ -26,8 +27,14 @@ ipcMain.handle('win:min', () => win.minimize());
 ipcMain.handle('win:max', () => (win.isMaximized() ? win.unmaximize() : win.maximize()));
 ipcMain.handle('win:close', () => win.close());
 
-ipcMain.handle('settings:get', safe(() => settings.get()));
-ipcMain.handle('settings:set', safe((p) => settings.set(p)));
+ipcMain.handle('settings:get', safe(() => { const { session, ...rest } = settings.get(); return { ...rest, loggedIn: !!session }; }));
+ipcMain.handle('settings:set', safe((p) => {
+  const { session: _s, deviceId: _d, ...safeP } = p || {};
+  // API adresi değişirse eski oturum belirteci yeni adrese gönderilmesin.
+  if (safeP.apiUrl !== undefined && safeP.apiUrl !== settings.get().apiUrl) safeP.session = null;
+  const { session, ...rest } = settings.set(safeP);
+  return { ...rest, loggedIn: !!session };
+}));
 
 ipcMain.handle('mods:list', safe(() => mods.list()));
 ipcMain.handle('mods:search', safe((q) => mods.search(q)));
@@ -51,6 +58,14 @@ ipcMain.handle('files:list', safe(() => {
   const r = dirs().root;
   return fs.readdirSync(r, { withFileTypes: true }).map((e) => ({ name: e.name, dir: e.isDirectory() }));
 }));
+
+// FireWing API (web/api). Oturum bilgisi renderer'a hiç verilmez, sadece ana süreçte kullanılır.
+ipcMain.handle('remote:call', safe((ep, body) => remote.call(ep, body || {})));
+ipcMain.handle('remote:get', safe((ep) => remote.get(ep)));
+ipcMain.handle('remote:login', safe((u, p) => remote.login(u, p)));
+ipcMain.handle('remote:logout', safe(() => remote.logout()));
+ipcMain.handle('remote:me', safe(() => (settings.get().session ? remote.call('me.php') : null)));
+ipcMain.handle('remote:packs', safe(() => remote.packs()));
 
 ipcMain.handle('launch:start', safe(() => launch.start((p) => win.webContents.send('launch:progress', p))));
 

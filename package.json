@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "check": "node --check main.js && node --check preload.js && node --check src/paths.js && node --check src/settings.js && node --check src/launch.js && node --check src/mods/manager.js && node --check src/mods/modrinth.js && node --check src/mods/curseforge.js && node --check renderer/app.js",
+    "check": "node --check main.js && node --check preload.js && node --check src/paths.js && node --check src/settings.js && node --check src/launch.js && node --check src/remote.js && node --check src/mods/manager.js && node --check src/mods/modrinth.js && node --check src/mods/curseforge.js && node --check renderer/app.js",
     "dist": "electron-builder"
   },
   "devDependencies": {
@@ -15,8 +15,19 @@
   "build": {
     "appId": "store.firewing.launcher",
     "productName": "FireWingLauncher",
-    "files": ["main.js", "preload.js", "src/**", "renderer/**"],
-    "win": { "target": "nsis" }
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**",
+      "renderer/**",
+      "node_modules/**"
+    ],
+    "win": {
+      "target": "nsis"
+    }
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  }
 }

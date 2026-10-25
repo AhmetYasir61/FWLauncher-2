@@ -12,6 +12,7 @@ contextBridge.exposeInMainWorld('api', {
     start: call('launch:start'),
     onProgress: (cb) => ipcRenderer.on('launch:progress', (_e, p) => cb(p))
   },
+  remote: { call: call('remote:call'), get: call('remote:get'), login: call('remote:login'), logout: call('remote:logout'), me: call('remote:me'), packs: call('remote:packs') },
   data: { get: call('data:get'), set: call('data:set') },
   files: { list: call('files:list') },
   openFolder: call('shell:openFolder')
