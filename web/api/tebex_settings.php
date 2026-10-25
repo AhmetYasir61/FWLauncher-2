@@ -59,6 +59,6 @@ pw_json([
     'publicToken'   => $row ? $row['public_token']   : '',
     'privateKey'    => $row ? $row['private_key']     : '',
     'webhookSecret' => $row ? $row['webhook_secret']  : '',
-    'webhookUrl'    => 'https://pokewing.com/api/tebex_webhook.php',
-    'completeUrl'   => 'https://pokewing.com/api/tebex_result.php?status=ok',
+    'webhookUrl'    => 'https://firewing.store/api/tebex_webhook.php',
+    'completeUrl'   => 'https://firewing.store/api/tebex_result.php?status=ok',
 ]);

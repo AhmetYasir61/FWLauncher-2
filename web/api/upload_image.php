@@ -29,5 +29,5 @@ if (!move_uploaded_file($f['tmp_name'], "$dir/$fname")) {
 
 pw_json([
     'success' => true,
-    'url'     => 'https://pokewing.com/img/products/' . $fname,
+    'url'     => 'https://firewing.store/img/products/' . $fname,
 ]);

@@ -15,7 +15,7 @@ require_once "config.php";        // $link
 require_once "tebex_config.php";  // token/key + $TEBEX_HEADLESS_* + URL'ler
 
 $LOG  = __DIR__ . '/tebex_create.log';
-$FAIL = 'https://pokewing.com/api/tebex_result.php?status=fail';
+$FAIL = 'https://firewing.store/api/tebex_result.php?status=fail';
 function fin_log($LOG, $m) { @file_put_contents($LOG, date('c') . "  FIN " . $m . "\n", FILE_APPEND); }
 function fin_go($url) { header('Location: ' . $url); exit; }
 

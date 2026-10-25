@@ -29,7 +29,7 @@ $status = (($_GET['status'] ?? '') === 'ok') ? 'ok' : 'fail';
       <h2>❌ Ödeme tamamlanamadı</h2>
       <p>Bir sorun oluştu ya da işlem iptal edildi. Dilersen tekrar deneyebilirsin.</p>
     <?php endif; ?>
-    <a class="btn" href="https://pokewing.com/">Ana Sayfaya Dön</a>
+    <a class="btn" href="https://firewing.store/">Ana Sayfaya Dön</a>
     <p class="note" id="pwCountdown"></p>
   </div>
   <script>
@@ -43,7 +43,7 @@ $status = (($_GET['status'] ?? '') === 'ok') ? 'ok' : 'fail';
       var el = document.getElementById('pwCountdown');
       function tick() {
         el.textContent = secs + ' saniye içinde ana sayfaya yönlendirileceksin…';
-        if (secs <= 0) { window.location.href = 'https://pokewing.com/'; return; }
+        if (secs <= 0) { window.location.href = 'https://firewing.store/'; return; }
         secs--; setTimeout(tick, 1000);
       }
       tick();

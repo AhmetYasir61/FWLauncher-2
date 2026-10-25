@@ -162,7 +162,7 @@ mysqli_stmt_close($ins);
 
 // 3) Basket auth linkini al. Universal/çoğu mağazada müşteri, paket eklemeden ÖNCE
 //    basket'i yetkilendirmeli. returnUrl = tebex_finalize.php (dönüşte paketleri ekler).
-$returnUrl = 'https://pokewing.com/api/tebex_finalize.php?ident=' . rawurlencode($ident);
+$returnUrl = 'https://firewing.store/api/tebex_finalize.php?ident=' . rawurlencode($ident);
 [$ca, $ba, $ea, $rawa] = tebex_http('GET',
     "$TEBEX_HEADLESS_ACCOUNTS/" . rawurlencode($TEBEX_PUBLIC_TOKEN) . "/baskets/" . rawurlencode($ident) . "/auth?returnUrl=" . rawurlencode($returnUrl));
 @file_put_contents(__DIR__ . '/tebex_create.log', date('c') . "  AUTH HTTP=$ca RESP=" . substr((string)$rawa, 0, 300) . "\n", FILE_APPEND);
