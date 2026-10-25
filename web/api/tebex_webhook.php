@@ -6,7 +6,7 @@
  *  tarafından onaylanınca yüklenir. PCoin = authme.coins (aynı sütun).
  *
  *  Tebex panelinde:  Developers > Webhooks > Endpoints > Add Endpoint
- *     URL:   https://pokewing.com/api/tebex_webhook.php
+ *     URL:   https://firewing.store/api/tebex_webhook.php
  *     Types: en az "Payment Completed" (+ istersen refunded/chargeback)
  *  Eklerken "validation.webhook" gelir; aşağıda otomatik yanıtlanır.
  *  Sonra Endpoints sayfasında "Validate" butonuna bas.

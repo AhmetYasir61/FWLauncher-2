@@ -21,8 +21,8 @@ $TEBEX_WEBHOOK_SECRET = fw_secret('tebex_webhook_secret');
 $TEBEX_STORE_TYPE = getenv('TEBEX_STORE_TYPE') ?: 'minecraft';
 
 // Ödeme sonrası dönüş sayfaları (Headless basket bunları kullanır).
-$TEBEX_COMPLETE_URL = 'https://pokewing.com/api/tebex_result.php?status=ok';
-$TEBEX_CANCEL_URL   = 'https://pokewing.com/api/tebex_result.php?status=fail';
+$TEBEX_COMPLETE_URL = 'https://firewing.store/api/tebex_result.php?status=ok';
+$TEBEX_CANCEL_URL   = 'https://firewing.store/api/tebex_result.php?status=fail';
 
 // Headless API taban adresleri (resmi).
 $TEBEX_HEADLESS_ACCOUNTS = 'https://headless.tebex.io/api/accounts';  // /{token}/baskets ...
